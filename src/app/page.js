@@ -20,7 +20,6 @@ let variable_list = { limit: 10, offset: 0 };
 
 const Listdata=await fetchGraphQll(GET_POSTS_LIST_QUERY, variable_list)
 
-console.log(Listdata,"datsss")
   
 
     return (
