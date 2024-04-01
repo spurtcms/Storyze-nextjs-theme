@@ -14,6 +14,7 @@ import { fetchGraphQl, fetchGraphQll } from "../api/graphicql";
 import { GET_POSTS_LIST_QUERY } from '../api/query'
 import BannerSkeleton from '../utilites/Skeleton/BannerSkeleton'
 import ViewAllSkeleton from '../utilites/Skeleton/ViewAllSkeleton'
+import Searchpage from './Searchpage'
 
 const Listpost = ({headList,postchannel}) => {
 
@@ -73,10 +74,16 @@ const Listpost = ({headList,postchannel}) => {
              <BannerSkeleton/>
              </>
             :
+            search==""?
             <>
-             <Navbar categories={categories} catNo={catNo} setCatNo={setCatNo} postes={postes} setPostes={setPostes} setOffset={setOffset} scrollX={scrollX} setscrollX={setscrollX}/>
-            <Listpage listdata={listdata}/>
-            </>}
+            <Navbar categories={categories} catNo={catNo} setCatNo={setCatNo} postes={postes} setPostes={setPostes} setOffset={setOffset} scrollX={scrollX} setscrollX={setscrollX}/>
+            <Listpage listdata={headList}/>
+            </>
+            :
+            <>
+            <Searchpage listdata={listdata}/>
+            </>
+          }
    </>
   )
 }

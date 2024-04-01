@@ -4,6 +4,8 @@ export const GET_POSTS_LIST_QUERY = `query($channelId: Int, $title:String $categ
     channelEntriesList{
       id
       title
+      metaTitle
+      metaDescription
       slug
       description
       userId
@@ -88,6 +90,8 @@ export const GET_POSTS_SLUG_QUERY = `query($slug: String!){
     channelEntryDetail(slug:$slug){
         id
         title
+        metaTitle
+        metaDescription
         slug
         description
         userId

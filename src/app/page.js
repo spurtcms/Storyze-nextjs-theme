@@ -16,7 +16,7 @@ export default async function page() {
 
 
 
-let variable_list = { limit: 10, offset: 0 };
+let variable_list = { limit: 100, offset: 0 };
 
 const Listdata=await fetchGraphQll(GET_POSTS_LIST_QUERY, variable_list)
 

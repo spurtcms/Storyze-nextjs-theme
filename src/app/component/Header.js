@@ -26,7 +26,7 @@ const Header = ({ search, setSearch, triger, setTriger, catNo }) => {
                     placeholder="search..."
                     value={search}
                     onChange={(e) => handleChange(e)}
-                    className="rounded-3xl ps-6 py-2 bg-transparent border border-white h-7 sm:w-auto w-28 text-xs"
+                    className="rounded-3xl ps-6 py-2 bg-transparent border border-white h-7 sm:w-auto w-28 text-xs text-white"
                   />
                   <img
                     src="/images/search.svg"

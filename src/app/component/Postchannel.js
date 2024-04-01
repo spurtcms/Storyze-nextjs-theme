@@ -14,7 +14,7 @@ import { useSearchParams } from "next/navigation";
 const Postchannel = ({ data, postdatalist, postchannel }) => {
   const [postes, setPostes] = useState(postchannel);
   const [categories, setCategories] = useState([]);
-  const [catNo, setCatNo] = useState(1);
+  const [catNo, setCatNo] = useState(null);
   const [loader, setLoader] = useState(true);
   const [offset, setOffset] = useState(0);
   const [scrollX, setscrollX] = useState(0);
