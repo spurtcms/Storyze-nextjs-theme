@@ -25,6 +25,7 @@ const Postchannel = ({ data, postdatalist, postchannel }) => {
     setCatNo(catgoId);
   }, [catgoId]);
 
+
   const [search, setSearch] = useState("");
 
   const [listdat, setHeadLis] = useState(postdatalist);
@@ -47,18 +48,23 @@ const Postchannel = ({ data, postdatalist, postchannel }) => {
   const PostListdata = listdat?.channelEntriesList?.channelEntriesList.filter(
     (response) => response.channelId === data?.channelDetail?.id
   );
+const SearchList=async()=>{
+  if (search != "") {
+    let variable_list = { limit: 10, offset: 0, title: search };
 
+   let entries=await fetchGraphQl(GET_POSTS_LIST_QUERY,variable_list);
+    setHeadLis(entries)
+    
+    setCatLoader(false)
+  }
+  else{
+    setHeadLis(postdatalist)
+  }
+
+}
+console.log(triger,"123")
   useEffect(() => {
-    if (triger != 0) {
-      let variable_list = { limit: 10, offset: 0, title: search };
-
-      fetchGraphQl(
-        GET_POSTS_LIST_QUERY,
-        variable_list,
-        setHeadLis,
-        setCatLoader
-      );
-    }
+    SearchList()
   }, [search]);
 
   useEffect(() => {

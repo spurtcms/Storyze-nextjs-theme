@@ -18,7 +18,7 @@ const Header = ({ search, setSearch, triger, setTriger, catNo }) => {
             <img src="/images/Spurt-logo.svg"></img>
           </Link>
           <ul className="list-none flex gap-4 items-center">
-            {catNo == null && (
+            {catNo == undefined && (
               <li>
                 <div className="relative">
                   <input

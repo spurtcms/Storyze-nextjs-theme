@@ -26,7 +26,8 @@ const Listdata=await fetchGraphQll(GET_POSTS_LIST_QUERY, variable_list)
         <>  
             <Suspense fallback={null}>
             <Listpost headList={Listdata} postchannel={postchannel}/>
-            </Suspense>    
+            </Suspense>   
+        
         </>
     )
 }

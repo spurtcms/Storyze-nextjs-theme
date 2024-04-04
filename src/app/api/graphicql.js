@@ -1,3 +1,5 @@
+"use server"
+
 
 import axiosInstance from "./axios";
 
@@ -20,14 +22,13 @@ async function fetchGraphQLData(GET_POSTS_QUERY,varia) {
 
 
 
-export const fetchGraphQl = async (GET_POSTS_QUERY,varia,setListdata,setCatLoader) => {
+export const fetchGraphQl = async (GET_POSTS_QUERY,varia) => {
 
   try {
     const entries = await fetchGraphQLData(GET_POSTS_QUERY,varia);
-    
-    setListdata(entries.data)
-    setCatLoader(false)
-    console.log(entries.data,'8098777');
+    return entries.data
+   
+  
 
   }
    catch (error) {

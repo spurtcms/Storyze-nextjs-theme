@@ -36,14 +36,18 @@ const Listpost = ({headList,postchannel}) => {
     const [channelid,setChannelid]=useState(null)
 
   
-
-   
-      useEffect(()=>{
-        if(triger!=0){
+     const searchList=async()=>{
+      if(triger!=0){
         let variable_list = { limit: 10, offset: 0,title:search,channelId:channelid};
   
-       fetchGraphQl(GET_POSTS_LIST_QUERY, variable_list,setHeadList,setCatLoader)  
+      let entries=await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_list)  
+       setHeadList(entries)
+       setCatLoader(false)
         }
+     }
+   
+      useEffect(()=>{
+        searchList()
       },[search])
     
       useEffect(()=>{

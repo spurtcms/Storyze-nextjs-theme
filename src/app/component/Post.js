@@ -43,14 +43,7 @@ const Post = ({ data,listdata }) => {
   );
 
 
-  useEffect(()=>{
-    if(triger!=0){
-    
-    let variable_list = { limit: 10, offset: 0,title:search,channelId:channelid};
 
-   fetchGraphQl(GET_POSTS_LIST_QUERY, variable_list,setHeadLis,setCatLoader)  
-    }
-  },[search])
 
 
   useEffect(()=>{
