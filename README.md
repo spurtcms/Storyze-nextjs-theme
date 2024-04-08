@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# A simple CMS-backed blog powered by spurtcms using Next.js 
 
-## Getting Started
+![Screenshot of spurtCMS using Presentation Tool to do Visual Editing](https://www.spurtcms.com/spurtcms-starter-template.jpg)
 
-First, run the development server:
+This starter is a statically generated blog that uses Next.js App Router for the frontend and [spurtcms][https://demo.spurtcms.com/dashboard/]to handle its content. It comes with a native spurtcms that offers features like real-time collaboration and visual editing with live updates using [https://spurtcms.com/documentation].
+
+The Studio connects to spurtcms, which gives you hosted content APIs with a flexible query language, on-demand image transformations, powerful patching, and more. You can use this starter to kick-start a blog or learn these technologies.
+
+## Features
+
+- Next.js v14
+- Next.js App Router
+- Styling with Tailwind CSS
+- Dark & Light Mode
+- Mobile Responsive
+- skeleton loader 
+- Optimized for SEO using Next.js's Metadata
+- infinite scroll pagination
+- New fetching and caching paradigms
+- Server Actions for mutations
+
+
+
+
+## Demo
+
+
+
+
+
+
+## Deploy your own
+
+
+
+
+## Set up environment variables
+
+Open .env and set  NEXT_PUBLIC_SPURTCMS_NEXTJS_STARTER_THEME_BASEURL  to  be the URL to your GraphQL endpoint in spurtCMS. For example:
+ https://graphql.spurtcms.com/query
+
+Your env should look like this:
+
+
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+NEXT_PUBLIC_SPURTCMS_NEXTJS_STARTER_THEME_BASEURL=""
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+NEXT_PUBLIC_SPURTCMS_NEXTJS_STARTER_THEME_TOKEN=""
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Set up on your own - graphql sever with admin panel
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Step 1. spurtCMS Admin Setup
 
-## Learn More
+Setup SpurtCMS Admin Console for Manage or Populate content
 
-To learn more about Next.js, take a look at the following resources:
+spurtCMS prioritizes user-friendly administration, offering powerful tools for content creation, management, and defining CMS workspaces. Administrators have precise control over member access, ensuring streamlined member management. Dynamic channel management allows effective content structuring, enhancing the overall user experience. Administrators effortlessly create and manage channels and spaces, providing a comprehensive, user-centric content management solution for personalized and organized web
+environments.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![Screenshot of spurtCMS]()
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+First,you need to set up spurtCMS Admin Application.There are many solutions for insallation.
+Please refer [(https://www.spurtcms.com/documentation/cms-admin)] 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+But,you can quick start with using CLI
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+sudo snap install spurtcms
+```
+```bash
+spurtcms -i admin
+```
+```bash
+sudo ./spurtcms-admin.sh
+```
+```bash
+sudo systemctl start spurtcms-admin.service
+```
+```bash
+sudo systemctl stop spurtcms-admin.service
+```
+## Step 2. GraphqlAPI Setup
+To initiate the set up process please refer
+[(https://www.spurtcms.com/documentation/grapql-api-setup)]
+
+or using CLI
+```bash
+spurtcms -i graphql
+```
+
+```bash
+sudo ./spurtcms-api.sh
+```
+
+```bash
+sudo systemctl start spurtcms-api.service
+```
+
+```bash
+sudo systemctl stop spurtcms-api.service
+```
+
+
+
+## Feedback and Questions
+If you have feedback or questions about this starter, please use the Github Issues on this repo, [(https://github.com/spurtcms/nextjs-starter-theme/issues)]
+or Send Email to us [(support@spurtcms.com)]
