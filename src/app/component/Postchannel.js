@@ -62,7 +62,6 @@ const SearchList=async()=>{
   }
 
 }
-console.log(triger,"123")
   useEffect(() => {
     SearchList()
   }, [search]);

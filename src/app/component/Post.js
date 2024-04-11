@@ -61,7 +61,7 @@ const Post = ({ data,listdata }) => {
    <div className="py-8 min-h-screen max-w-screen-2xl m-auto px-10 sm:px-20">
         <Image
           loader={handleLoad}
-          src={data.channelEntryDetail?.coverImage}
+          src={data?.channelEntryDetail?.coverImage}
           alt="Picture of the author"
           width={500}
           height={500}
@@ -71,31 +71,31 @@ const Post = ({ data,listdata }) => {
           <div className="w-full h-px bg-grey mt-2 mb-4"></div>
           <div className="flex items-center gap-2 mb-4">
           <div class="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
-            {data.channelEntryDetail?.authorDetails?.ProfileImagePath?
+            {data?.channelEntryDetail?.authorDetails?.ProfileImagePath?
             <Image
             loader={handleLoad}
-            src={data.channelEntryDetail?.authorDetails?.ProfileImagePath}
+            src={data?.channelEntryDetail?.authorDetails?.ProfileImagePath}
             alt="Picture of the author"
             width={32}
             height={32}
           />
           :
           <>
-          {`${data.channelEntryDetail?.authorDetails?.FirstName} ${data.channelEntryDetail?.authorDetails?.LastName}`.charAt(0)}
+          {`${data?.channelEntryDetail?.authorDetails?.FirstName} ${data?.channelEntryDetail?.authorDetails?.LastName}`.charAt(0)}
           </>
           }
             
             </div>
             <h5 className="text-primary text-base font-normal">
-              {`${data.channelEntryDetail?.authorDetails?.FirstName} ${data.channelEntryDetail?.authorDetails?.LastName}`}
+              {`${data?.channelEntryDetail?.authorDetails?.FirstName} ${data?.channelEntryDetail?.authorDetails?.LastName}`}
             </h5>
           </div>
           <p className="text-primary text-sm font-normal mb-2 my-3">
-            {data.channelEntryDetail?.categories[0].at(-1).categoryName}
+            {data?.channelEntryDetail?.categories[0].at(-1).categoryName}
           </p>
           <div>
             <h3 className="text-black text-4xl font-bold mb-2">
-              {data.channelEntryDetail?.title}
+              {data?.channelEntryDetail?.title}
             </h3>
            
             
@@ -107,7 +107,7 @@ const Post = ({ data,listdata }) => {
           {postdata &&
             postdata.map((result) => (
               <>
-                {result.id !== data.channelEntryDetail?.id ? (
+                {result.id !== data?.channelEntryDetail?.id ? (
                   <>
                     <div>
                       <Image

@@ -8,7 +8,6 @@ import moment from "moment";
 
 const Listpage = ({ listdata }) => {
 
-console.log(listdata,"asdlistdata")
   const groupData = listdata?.channelEntriesList?.channelEntriesList.reduce(
     (acc, items) => {
       if (!acc[items.channelId]) {
