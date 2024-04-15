@@ -4,27 +4,27 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 import moment from "moment";
-import Header from "./Header";
-import { fetchGraphQl } from "../api/graphicql";
-import { GET_POSTS_LIST_QUERY } from "../api/query";
-import PostSkeleton from "../utilites/Skeleton/PostSkeleton";
-import { useSearchParams } from "next/navigation";
+import Header from "../Header";
+// import { fetchGraphQl } from "../../api/graphicql";
+// import { GET_POSTS_LIST_QUERY } from "../../api/query";
+import PostSkeleton from "../../utilites/Skeleton/PostSkeleton";
+// import { useSearchParams } from "next/navigation";
 
 
 
-const Post = ({ data,listdata }) => {
-
+const Post = ({ data,listdata,params}) => {
+console.log(params.slug,"params")
   const [search,setSearch]=useState("")
 
     const [listdat,setHeadLis]=useState(listdata)
     const [triger,setTriger]=useState(0)
     const [catLoader,setCatLoader]=useState(true)
-    const [channelid,setChannelid]=useState(null)
+    // const [channelid,setChannelid]=useState(null)
     const [catNo,setCatNo]=useState(0)
 
-    const searchParams = useSearchParams()
-    const catgoId=searchParams.get("catgoId")
-  
+    // const searchParams = useSearchParams()
+    // const catgoId=searchParams.get("catgoId")
+    const catgoId=params.slug
     useEffect(()=>{
       setCatNo(catgoId)
     },[catgoId])

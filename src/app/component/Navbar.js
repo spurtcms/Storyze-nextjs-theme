@@ -69,7 +69,7 @@ function Navbar({categories,catNo,setCatNo,postes,setPostes ,setOffset , scrollX
         
       } else {
        
-        router.push(`/postlist/${id}?catgoId=${id}`)
+        router.push(`/postlist/${id}`)
       }
     };
 

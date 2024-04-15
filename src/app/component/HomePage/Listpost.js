@@ -5,16 +5,16 @@
 
 import React from 'react'
 import Header from '@/app/component/Header'
-import Listpage from '@/app/component/Listpage'
+import Listpage from '@/app/component/HomePage/Listpage'
 import Navbar from '@/app/component/Navbar'
 
 import { useEffect, useState } from "react";
 import {useSearchParams } from "next/navigation";
-import { fetchGraphQl, fetchGraphQll } from "../api/graphicql";
-import { GET_POSTS_LIST_QUERY } from '../api/query'
-import BannerSkeleton from '../utilites/Skeleton/BannerSkeleton'
-import ViewAllSkeleton from '../utilites/Skeleton/ViewAllSkeleton'
-import Searchpage from './Searchpage'
+import { fetchGraphQl, fetchGraphQll } from "../../api/graphicql";
+import { GET_POSTS_LIST_QUERY } from '../../api/query'
+import BannerSkeleton from '../../utilites/Skeleton/BannerSkeleton'
+import ViewAllSkeleton from '../../utilites/Skeleton/ViewAllSkeleton'
+import Searchpage from '../Searchpage'
 
 const Listpost = ({headList,postchannel}) => {
 
@@ -26,7 +26,7 @@ const Listpost = ({headList,postchannel}) => {
     const [offset,setOffset]=useState(0)
     const [scrollX, setscrollX] = useState(0);
     const searchParams = useSearchParams()
-    const catgoId=searchParams.get("catgoId")
+    // const catgoId=searchParams.get("catgoId")
 
     const [search,setSearch]=useState("")
 

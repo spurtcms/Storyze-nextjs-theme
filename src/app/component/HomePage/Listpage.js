@@ -57,7 +57,7 @@ const Listpage = ({ listdata }) => {
                          
                           <div className="pb-6 lg:pr-6 border-b lg:border-r lg:border-b-0 border-grey">
                           <Link
-                            href={`/post/${datas?.fear?.slug}?catgoId=${datas?.fear?.slug}`}
+                            href={`/post/${datas?.fear?.slug}`}
                           >
                             {datas?.fear?.coverImage && (
                               <Image
@@ -81,7 +81,7 @@ const Listpage = ({ listdata }) => {
                             <h3 className="text-black text-3xl font-bold mb-2">
                               {" "}
                               <Link
-                                href={`/post/${datas?.fear?.slug}?catgoId=${datas?.fear?.slug}`}
+                                href={`/post/${datas?.fear?.slug}`}
                               >
                                 {" "}
                                 {datas.fear.title}{" "}
@@ -149,7 +149,7 @@ const Listpage = ({ listdata }) => {
                                               <>
                                                 <div>
                                                   <Link
-                                                    href={`/post/${response.slug}?catgoId=${response.slug}`}
+                                                    href={`/post/${response.slug}`}
                                                   >
                                                     <Image
                                                       loader={hadleLoad}
@@ -169,7 +169,7 @@ const Listpage = ({ listdata }) => {
                                                   <div>
                                                     <h3 className="text-black  text-2xl font-bold mb-2">
                                                       <Link
-                                                        href={`/post/${response.slug}?catgoId=${response.slug}`}
+                                                        href={`/post/${response.slug}}`}
                                                       >
                                                         {response.title}
                                                       </Link>
@@ -251,7 +251,7 @@ const Listpage = ({ listdata }) => {
                           {datas.fear ? (
                             <>
                               <Link
-                                href={`/post/${datas?.fear?.slug}?catgoId=${datas?.fear?.slug}`}
+                                href={`/post/${datas?.fear?.slug}`}
                               >
                                 <Image
                                   loader={hadleLoad}
@@ -268,7 +268,7 @@ const Listpage = ({ listdata }) => {
                               <div>
                                 <h3 className="text-black  text-3xl font-bold mb-2">
                                   <Link
-                                    href={`/post/${datas?.fear?.slug}?catgoId=${datas?.fear?.slug}`}
+                                    href={`/post/${datas?.fear?.slug}`}
                                   >
                                     {datas.fear.title}
                                   </Link>
@@ -346,7 +346,7 @@ const Listpage = ({ listdata }) => {
                                           </p>
                                           <h3 className="text-black text-2xl font-bold mb-2">
                                             <Link
-                                              href={`/post/${response.slug}?catgoId=${response.slug}`}
+                                              href={`/post/${response.slug}`}
                                             >
                                               {response.title}
                                             </Link>
@@ -386,7 +386,7 @@ const Listpage = ({ listdata }) => {
                                           </div>
                                         </div>
                                         <Link
-                                          href={`/post/${response.slug}?catgoId=${response.slug}`}
+                                          href={`/post/${response.slug}`}
                                         >
                                           <Image
                                             loader={hadleLoad}

@@ -7,11 +7,11 @@ import moment from "moment";
 import { GET_POSTS_LIST_QUERY } from "@/app/api/query";
 import { fetchGraphQl } from "@/app/api/graphicql";
 import Header from "@/app/component/Header";
-import ChannelSkeleton from "../utilites/Skeleton/ChannelSkeleton";
-import Navbar from "./Navbar";
+import ChannelSkeleton from "../../utilites/Skeleton/ChannelSkeleton";
+import Navbar from "../Navbar";
 import { useSearchParams } from "next/navigation";
 
-const Postchannel = ({ data, postdatalist, postchannel }) => {
+const Postchannel = ({ data, postdatalist, postchannel,params}) => {
   const [postes, setPostes] = useState(postchannel);
   const [categories, setCategories] = useState([]);
   const [catNo, setCatNo] = useState(null);
@@ -19,7 +19,8 @@ const Postchannel = ({ data, postdatalist, postchannel }) => {
   const [offset, setOffset] = useState(0);
   const [scrollX, setscrollX] = useState(0);
   const searchParams = useSearchParams();
-  const catgoId = searchParams.get("catgoId");
+  // const catgoId = searchParams.get("catgoId");
+  const catgoId = params.slug;
 
   useEffect(() => {
     setCatNo(catgoId);
