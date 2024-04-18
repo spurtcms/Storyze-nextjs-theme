@@ -6,7 +6,7 @@ import Post from './Post'
 
 export async function generateMetadata({params}) {
 
-    let variable_slug={ "limit": 20, "offset": 0,"slug":params.slug}
+    let variable_slug={ "limit": 50, "offset": 0,"slug":params.slug}
   
     const postesdfs=await fetchGraphQl(GET_POSTS_SLUG_QUERY, variable_slug)
    let title=postesdfs?.channelEntryDetail?.metaTitle
@@ -30,7 +30,7 @@ const Postaction =async ({params}) => {
   const postes=await fetchGraphQl(GET_POSTS_SLUG_QUERY, variable_slug)
   
 
-let variable_list = { limit: 20, offset: 0 };
+let variable_list = { limit: 50, offset: 0 };
 
 const Listdata=await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_list)
   return (

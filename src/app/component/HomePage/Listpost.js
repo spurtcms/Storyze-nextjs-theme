@@ -38,7 +38,7 @@ const Listpost = ({headList,postchannel}) => {
   
      const searchList=async()=>{
       if(triger!=0){
-        let variable_list = { limit: 10, offset: 0,title:search,channelId:channelid};
+        let variable_list = { limit: 30, offset: 0,title:search,channelId:channelid};
   
       let entries=await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_list)  
        setHeadList(entries)

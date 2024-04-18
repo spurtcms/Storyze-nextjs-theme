@@ -30,35 +30,6 @@ export const GET_POSTS_LIST_QUERY = `query($channelId: Int, $title:String $categ
         imagePath
         parentId
       }
-      additionalFields{
-        sections{
-          sectionId
-          sectionName
-          sectionTypeId
-          createdOn
-          createdBy
-          modifiedOn
-          modifiedBY
-          orderIndex
-        }
-        fields{
-          fieldId
-          fieldName
-          fieldTypeId
-          mandatoryField
-          optionExist
-          createdOn
-          createdBy
-          imagePath
-        }
-      }
-      memberProfile{
-        memberId
-        profileName
-        companyLogo
-        memberDetails
-        profilePage
-      }
       authorDetails{
         AuthorId
         FirstName

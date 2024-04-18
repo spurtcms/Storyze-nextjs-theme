@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { DarkThemeProvider } from "./utilites/DarkThemeProvider";
+import Header from "./component/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +15,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
       {/* <main className="container min-h-screen mx-auto max-w-screen-lg"> */}
+      
       <DarkThemeProvider>
+      {/* <Header/> */}
           {children}
       </DarkThemeProvider>
       {/* </main> */}

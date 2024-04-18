@@ -19,50 +19,61 @@ const Listpage = ({ listdata }) => {
     },
     {}
   );
-
-  let postdata = [];
+  let initialdata = [];
   for (const key in groupData) {
-    postdata.push({ detail: key, values: groupData[key] });
+    initialdata.push({ detail: key, values: groupData[key] });
   }
 
   let featuredata = [];
 
-  postdata.map((data) => {
-    data.fear = "";
+  initialdata.map((data) => {
+    data.entrydata = "";
     data.values.map((res) => {
       if (res.featuredEntry == 1) {
-        data.fear = res;
+        data.entrydata = res;
       }
     });
   });
 
-  featuredata.push(postdata);
+  featuredata.push(initialdata);
+  // let entrydatavalue=[]
+  // let feturelists=featuredata.map((res)=>res.filter((dt,index)=>dt.entrydata!="" && fearvalue.push(index)))
+  // // let feturelist=featuredata.map((res)=>res.toSpliced(0,1,feturelists))
+  // const sortedArtists = [
+  //   ...featuredata[0].slice(1),
+  //   featuredata?.[0][0],
+  // ];
+// console.log(sortedArtists,'sortedArtists')
 
+// console.log(featuredata?.[0].splice(0,1,feturelists?.[0][0],"99oo9o9o9"))
   const hadleLoad = ({ src }) => {
     return src;
   };
-
   return (
     <>
       <div className="min-h-screen max-w-screen-2xl m-auto px-10 sm:px-20 py-4">
         {featuredata &&
           featuredata.map((result) => (
             <>
-              {result.map((datas, index) => (
+              {result&&result.map((datas, index) => (
+              
                 <>
-                  {index == 0 ? (
+              
+                  {index==0 ?(
                     <>
                       <div>
                         <div className="grid grid-cols-1 lg:grid-cols-2">
                          
                           <div className="pb-6 lg:pr-6 border-b lg:border-r lg:border-b-0 border-grey">
-                          <Link
-                            href={`/post/${datas?.fear?.slug}`}
-                          >
-                            {datas?.fear?.coverImage && (
+                          {datas?.entrydata?
+                          
+                          
+                          <>
+                          <Link href={`/post/${datas?.entrydata?.slug}`}>
+                            {datas?.entrydata?.coverImage && (
                               <Image
                                 loader={hadleLoad}
-                                src={datas?.fear?.coverImage}
+                                src={datas?.entrydata?.coverImage}
                                 alt="Picture of the author"
                                 width={500}
                                 height={500}
@@ -73,37 +84,35 @@ const Listpage = ({ listdata }) => {
 
                           <p className="text-primary text-sm font-normal mb-2 my-3">
                             {
-                              datas?.fear?.categories?.[0]?.at(-1)
+                              datas?.entrydata?.categories?.[0]?.at(-1)
                                 ?.categoryName
                             }
                           </p>
                           <div>
                             <h3 className="text-black text-3xl font-bold mb-2">
                               {" "}
-                              <Link
-                                href={`/post/${datas?.fear?.slug}`}
-                              >
+                              <Link href={`/post/${datas?.entrydata?.slug}`}>
                                 {" "}
-                                {datas.fear.title}{" "}
+                                {datas.entrydata.title}{" "}
                               </Link>
                             </h3>
                             <p
                               className="text-gray-500 text-lg font-light line-clamp-3 mb-3"
                               dangerouslySetInnerHTML={{
-                                __html: datas.fear.description,
+                                __html: datas.entrydata.description,
                               }}
                             ></p>
                             <div className="flex items-center gap-3">
-                              {datas?.fear && (
+                              {datas?.entrydata && (
                                 <>
                                   <div className="flex items-center gap-2">
                                     <div class="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
-                                      {datas?.fear?.authorDetails
+                                      {datas?.entrydata?.authorDetails
                                         ?.ProfileImagePath ? (
                                         <Image
                                           loader={hadleLoad}
                                           src={
-                                            datas?.fear?.authorDetails
+                                            datas?.entrydata?.authorDetails
                                               ?.ProfileImagePath
                                           }
                                           alt="Picture of the author"
@@ -112,26 +121,38 @@ const Listpage = ({ listdata }) => {
                                         />
                                       ) : (
                                         <>
-                                          {`${datas?.fear?.authorDetails?.FirstName} ${datas?.fear?.authorDetails?.LastName}`.charAt(
+                                          {`${datas?.entrydata?.authorDetails?.FirstName} ${datas?.entrydata?.authorDetails?.LastName}`.charAt(
                                             0
                                           )}
                                         </>
                                       )}
                                     </div>
                                     <h5 className="text-primary text-base font-normal">
-                                      {`${datas?.fear?.authorDetails?.FirstName} ${datas?.fear?.authorDetails?.LastName}`}
+                                      {`${datas?.entrydata?.authorDetails?.FirstName} ${datas?.entrydata?.authorDetails?.LastName}`}
                                     </h5>
                                   </div>
                                   <p className="text-black font-normal text-base">
-                                    {moment(datas?.fear?.createdOn).format(
+                                    {moment(datas?.entrydata?.createdOn).format(
                                       "MMM DD, YYYY"
                                     )}
                                   </p>
                                 </>
                               )}
                             </div>
+                            
                           </div>
-                        </div> 
+                          </>
+                          :
+                               <div dir="ltr">
+                                  <Image
+                                    className=" p-10"
+                                    src="/images/no data.svg"
+                                    width={500}
+                                    height={100}
+                                  />
+                              </div>
+                               } 
+                          </div> 
                         
                           
                          
@@ -142,15 +163,14 @@ const Listpage = ({ listdata }) => {
                             <>
                                   {datas.values.map(
                                     (response, inde) =>
+                                    
                                       response.featuredEntry != 1 && (
                                         <>
                                           {inde <= 3 &&
                                             response.featuredEntry != 1 && (
                                               <>
                                                 <div>
-                                                  <Link
-                                                    href={`/post/${response.slug}`}
-                                                  >
+                                                  <Link href={`/post/${response?.slug}`}>
                                                     <Image
                                                       loader={hadleLoad}
                                                       src={response.coverImage}
@@ -160,17 +180,16 @@ const Listpage = ({ listdata }) => {
                                                     />
                                                   </Link>
                                                   <p className="text-primary text-sm font-normal mb-2 my-3">
-                                                    {
-                                                      response.categories[0].at(
-                                                        -1
-                                                      ).categoryName
-                                                    }
+                                                    {response.categories.map((d,inde)=>(
+                                                      <>
+                                                      {response.categories[inde].at(-1).categoryName}
+                                                      </>
+                                                    ))}
+                                                    
                                                   </p>
                                                   <div>
                                                     <h3 className="text-black  text-2xl font-bold mb-2">
-                                                      <Link
-                                                        href={`/post/${response.slug}}`}
-                                                      >
+                                                      <Link href={`/post/${response?.slug}`}>
                                                         {response.title}
                                                       </Link>
                                                     </h3>
@@ -230,7 +249,7 @@ const Listpage = ({ listdata }) => {
                          :
                               <div dir="ltr">
                                   <Image
-                                    className=" ps-16"
+                                    className=" p-10"
                                     src="/images/no data.svg"
                                     width={500}
                                     height={100}
@@ -239,7 +258,8 @@ const Listpage = ({ listdata }) => {
                          }
                           
                           
-                        </div>
+                        
+                         </div>
                       </div>
                     </>
                   ) : (
@@ -248,14 +268,12 @@ const Listpage = ({ listdata }) => {
 
                       <div className="grid grid-cols-1 lg:grid-cols-2">
                         <div className="pb-6 lg:pr-6 border-b lg:border-r lg:border-b-0 border-grey">
-                          {datas.fear ? (
+                          {index!=0&&datas.entrydata ? (
                             <>
-                              <Link
-                                href={`/post/${datas?.fear?.slug}`}
-                              >
+                              <Link href={`/post/${datas?.entrydata?.slug}`}>
                                 <Image
                                   loader={hadleLoad}
-                                  src={datas.fear.coverImage}
+                                  src={datas.entrydata.coverImage}
                                   alt="Picture of the author"
                                   width={500}
                                   height={500}
@@ -263,31 +281,29 @@ const Listpage = ({ listdata }) => {
                                 />
                               </Link>
                               <p className="text-primary text-sm font-normal mb-2 my-3">
-                                {datas.fear.categories[0].at(-1).categoryName}
+                                {datas.entrydata.categories[0].at(-1).categoryName}
                               </p>
                               <div>
                                 <h3 className="text-black  text-3xl font-bold mb-2">
-                                  <Link
-                                    href={`/post/${datas?.fear?.slug}`}
-                                  >
-                                    {datas.fear.title}
+                                  <Link href={`/post/${datas?.entrydata?.slug}`}>
+                                    {datas.entrydata.title}
                                   </Link>
                                 </h3>
                                 <p
                                   className="text-gray-500 text-lg font-light line-clamp-3 mb-3"
                                   dangerouslySetInnerHTML={{
-                                    __html: datas.fear.description,
+                                    __html: datas.entrydata.description,
                                   }}
                                 ></p>
                                 <div className="flex items-center gap-3">
                                   <div className="flex items-center gap-2">
                                     <div class="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
-                                      {datas.fear.authorDetails
+                                      {datas.entrydata.authorDetails
                                         .ProfileImagePath ? (
                                         <Image
                                           loader={hadleLoad}
                                           src={
-                                            datas.fear.authorDetails
+                                            datas.entrydata.authorDetails
                                               .ProfileImagePath
                                           }
                                           alt="Picture of the author"
@@ -296,18 +312,18 @@ const Listpage = ({ listdata }) => {
                                         />
                                       ) : (
                                         <>
-                                          {`${datas?.fear?.authorDetails?.FirstName} ${datas?.fear?.authorDetails?.LastName}`.charAt(
+                                          {`${datas?.entrydata?.authorDetails?.FirstName} ${datas?.entrydata?.authorDetails?.LastName}`.charAt(
                                             0
                                           )}
                                         </>
                                       )}
                                     </div>
                                     <h5 className="text-primary text-base font-normal">
-                                      {`${datas.fear.authorDetails.FirstName}${datas.fear.authorDetails.LastName}`}
+                                      {`${datas.entrydata.authorDetails.FirstName}${datas.entrydata.authorDetails.LastName}`}
                                     </h5>
                                   </div>
                                   <p className="text-black font-normal text-base">
-                                    {moment(datas.fear.createdOn).format(
+                                    {moment(datas.entrydata.createdOn).format(
                                       "MMM DD, YYYY"
                                     )}
                                   </p>
@@ -325,7 +341,7 @@ const Listpage = ({ listdata }) => {
                         </div>
 
 
-                        {(datas.values.find(value=>{return value.featuredEntry!==1}))
+                        {(datas?.values?.find(value=>{return value.featuredEntry!==1}))
                          
                          ?
 
@@ -345,9 +361,7 @@ const Listpage = ({ listdata }) => {
                                             }
                                           </p>
                                           <h3 className="text-black text-2xl font-bold mb-2">
-                                            <Link
-                                              href={`/post/${response.slug}`}
-                                            >
+                                            <Link href={`/post/${response?.slug}`}>
                                               {response.title}
                                             </Link>
                                           </h3>
@@ -385,9 +399,7 @@ const Listpage = ({ listdata }) => {
                                             </p>
                                           </div>
                                         </div>
-                                        <Link
-                                          href={`/post/${response.slug}`}
-                                        >
+                                        <Link href={`/post/${response?.slug}`}>
                                           <Image
                                             loader={hadleLoad}
                                             src={response.coverImage}

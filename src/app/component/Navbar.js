@@ -4,6 +4,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 
 import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 function Navbar({categories,catNo,setCatNo,postes,setPostes ,setOffset , scrollX ,setscrollX }){
 
@@ -69,7 +70,9 @@ function Navbar({categories,catNo,setCatNo,postes,setPostes ,setOffset , scrollX
         
       } else {
        
+        // router.push(`/postlist/${id}/?catgoId=${id}`)
         router.push(`/postlist/${id}`)
+        
       }
     };
 
@@ -112,6 +115,7 @@ function Navbar({categories,catNo,setCatNo,postes,setPostes ,setOffset , scrollX
                   All
                 </li>
                 {postes?.channelList?.channellist?.map((data, index) => (
+                  <>
                   <li
                     key={index}
                     onClick={() => handleActive(data.id)}
@@ -124,6 +128,7 @@ function Navbar({categories,catNo,setCatNo,postes,setPostes ,setOffset , scrollX
                     {" "}
                     {data.channelName}{" "}
                   </li>
+                  </>
                 ))}
               </ul>
             </>

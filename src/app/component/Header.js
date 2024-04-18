@@ -9,7 +9,6 @@ const Header = ({ search, setSearch, triger, setTriger, catNo }) => {
     setSearch(e.target.value);
     setTriger(triger + 1);
   };
-
   return (
     <>
       <header className="bg-black-700 shadow-lg">
@@ -19,28 +18,23 @@ const Header = ({ search, setSearch, triger, setTriger, catNo }) => {
           </Link>
           <ul className="list-none flex gap-4 items-center">
             {catNo == undefined && (
-              <li>
                 <div className="relative">
                   <input
                     type="text"
                     placeholder="search..."
                     value={search}
                     onChange={(e) => handleChange(e)}
-                    className="rounded-3xl ps-6 py-2 bg-transparent border border-white h-7 sm:w-auto w-28 text-xs text-white"
+                    className="rounded-3xl ps-6 py-2 bg-transparent border border-slate-400 h-7 sm:w-auto w-28 text-xs text-white"
                   />
                   <img
                     src="/images/search.svg"
                     className="absolute top-2 left-2 h-3"
                   />
-                </div>
-              </li>
+                </div> 
             )}
-
             <li>
-             
               <ThemeSwitch />
-            </li>
-            
+            </li> 
           </ul>
         </nav>
       </header>

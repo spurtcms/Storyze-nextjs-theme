@@ -13,14 +13,13 @@ import PostSkeleton from "../../utilites/Skeleton/PostSkeleton";
 
 
 const Post = ({ data,listdata,params}) => {
-console.log(params.slug,"params")
   const [search,setSearch]=useState("")
 
     const [listdat,setHeadLis]=useState(listdata)
     const [triger,setTriger]=useState(0)
     const [catLoader,setCatLoader]=useState(true)
     // const [channelid,setChannelid]=useState(null)
-    const [catNo,setCatNo]=useState(0)
+    const [catNo,setCatNo]=useState()
 
     // const searchParams = useSearchParams()
     // const catgoId=searchParams.get("catgoId")
@@ -29,8 +28,8 @@ console.log(params.slug,"params")
       setCatNo(catgoId)
     },[catgoId])
     
-
  
+
 
   const handleLoad = ({ src }) => {
     return src;

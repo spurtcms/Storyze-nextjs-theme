@@ -28,12 +28,12 @@ const Postlistaction =async({params}) => {
 
     let {slug}=params
 
-    let variable_category={"limit": 10, "offset":0,"hierarchylevel": 0}
+    let variable_category={"limit": 50, "offset":0,"hierarchylevel": 0}
     const postchannel=await fetchGraphQl(GET_POSTS_CHANNELLIST_QUERY,variable_category)  
 
 
 
-    let variable_slug={ "limit": 20, "offset": 0}
+    let variable_slug={ "limit": 50, "offset": 0}
 
     const postdatalist=await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_slug)
     

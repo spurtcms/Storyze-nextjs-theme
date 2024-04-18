@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import moment from "moment";
 import { GET_POSTS_LIST_QUERY } from "@/app/api/query";
 import { fetchGraphQl } from "@/app/api/graphicql";
 import Header from "@/app/component/Header";
-import ChannelSkeleton from "../../utilites/Skeleton/ChannelSkeleton";
+// import ChannelSkeleton from "../../utilites/Skeleton/ChannelSkeleton";
 import Navbar from "../Navbar";
 import { useSearchParams } from "next/navigation";
 
@@ -15,10 +15,10 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
   const [postes, setPostes] = useState(postchannel);
   const [categories, setCategories] = useState([]);
   const [catNo, setCatNo] = useState(null);
-  const [loader, setLoader] = useState(true);
+  // const [loader, setLoader] = useState(true);
   const [offset, setOffset] = useState(0);
   const [scrollX, setscrollX] = useState(0);
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
   // const catgoId = searchParams.get("catgoId");
   const catgoId = params.slug;
 
@@ -32,6 +32,7 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
   const [listdat, setHeadLis] = useState(postdatalist);
   const [triger, setTriger] = useState(0);
   const [catLoader, setCatLoader] = useState(true);
+
 
   let initialPostList = 8;
   const incrementInitialPostList = 8;
@@ -55,8 +56,10 @@ const SearchList=async()=>{
 
    let entries=await fetchGraphQl(GET_POSTS_LIST_QUERY,variable_list);
     setHeadLis(entries)
+    if(entries){
+      setCatLoader(false)
+    }
     
-    setCatLoader(false)
   }
   else{
     setHeadLis(postdatalist)
@@ -67,9 +70,11 @@ const SearchList=async()=>{
     SearchList()
   }, [search]);
 
-  useEffect(() => {
-    setCatLoader(false);
-  }, []);
+  // useEffect(() => {
+  //   if(postdatalist){
+  //     setCatLoader(false);
+  //   }
+  // }, []);
   return (
     <>
       <Header
@@ -78,11 +83,8 @@ const SearchList=async()=>{
         triger={triger}
         setTriger={setTriger}
       />
-      {catLoader == true ? (
-        <>
-          <ChannelSkeleton />
-        </>
-      ) : (
+     
+       (
         <>
           <Navbar
             categories={categories}
@@ -100,12 +102,12 @@ const SearchList=async()=>{
                 <h4 className="text-black text-5xl font-bold">
                   {data?.channelDetail?.channelName}
                 </h4>
-                <p
+                <div
                   className="text-gray-500 text-xl font-normal line-clamp-3 mb-3"
                   dangerouslySetInnerHTML={{
-                    __html: data?.channelDetail.channelDescription,
+                    __html: data?.channelDetail?.channelDescription,
                   }}
-                ></p>
+                ></div>
               </div>
               {data?.channelDetail?.imagePath ? (
                 <Image
@@ -154,12 +156,12 @@ const SearchList=async()=>{
                           {response.title}
                         </h3>
                       </Link>
-                      <p
+                     <div
                         className="text-gray-500 text-lg font-light line-clamp-2 mb-3"
                         dangerouslySetInnerHTML={{
-                          __html: response.description,
+                          __html: response?.description,
                         }}
-                      ></p>
+                      />
                       <div className="flex items-center gap-3">
                         <div className="flex items-center gap-2">
                           <div class="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
@@ -206,7 +208,8 @@ const SearchList=async()=>{
             )}
           </div>
         </>
-      )}
+      )
+    
     </>
   );
 };
