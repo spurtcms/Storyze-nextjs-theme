@@ -50,6 +50,7 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
   const PostListdata = listdat?.channelEntriesList?.channelEntriesList.filter(
     (response) => response.channelId === data?.channelDetail?.id
   );
+  console.log(PostListdata,'PostListdata')
 const SearchList=async()=>{
   if (search != "") {
     let variable_list = { limit: 10, offset: 0, title: search };
@@ -119,16 +120,17 @@ const SearchList=async()=>{
                   className="w-full"
                 />
               ) : (
-                <div>
-                  <Image
-                    loader={handleLoad}
-                    className="ps-16"
-                    src="/images/no data.svg"
-                    alt="Picture of the author"
-                    width={500}
-                    height={500}
-                  />
-                </div>
+                // <div>
+                //   <Image
+                //     loader={handleLoad}
+                //     className="ps-16"
+                //     src="/images/no data.svg"
+                //     alt="Picture of the author"
+                //     width={500}
+                //     height={500}
+                //   />
+                // </div>
+                ""
               )}
             </div>
             <div className="w-full h-px bg-grey my-6"></div>

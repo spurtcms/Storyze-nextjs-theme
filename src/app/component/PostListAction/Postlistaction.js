@@ -39,9 +39,10 @@ const Postlistaction =async({params}) => {
     
   
   
-  let variable_list = { channelId:slug};
+  let variable_list = { channelSlug:slug};
   
   const postdata=await fetchGraphQl(GET_POSTS_CHANNELLIST_SLUG_QUERY, variable_list)
+
   return (
    <>
    <Postchannel data={postdata} postdatalist={postdatalist} postchannel={postchannel} params={params}/>

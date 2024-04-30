@@ -106,9 +106,10 @@ export const GET_POSTS_SLUG_QUERY = `query($slug: String!){
   }`
 
   export const GET_POSTS_CHANNELLIST_SLUG_QUERY=`
-  query($channelId: Int!){
-    channelDetail(channelId:$channelId){
+  query($channelSlug:String!){
+    channelDetail(channelSlug:$channelSlug){
       id
+      slugName
       channelName
       channelDescription
     }

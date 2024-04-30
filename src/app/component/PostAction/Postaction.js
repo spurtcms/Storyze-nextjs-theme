@@ -9,6 +9,7 @@ export async function generateMetadata({params}) {
     let variable_slug={ "limit": 50, "offset": 0,"slug":params.slug}
   
     const postesdfs=await fetchGraphQl(GET_POSTS_SLUG_QUERY, variable_slug)
+    console.log(postesdfs,'asdadasda')
    let title=postesdfs?.channelEntryDetail?.metaTitle
    let description=postesdfs?.channelEntryDetail?.metaDescription
   

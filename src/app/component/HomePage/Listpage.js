@@ -319,7 +319,7 @@ const Listpage = ({ listdata }) => {
                                       )}
                                     </div>
                                     <h5 className="text-primary text-base font-normal">
-                                      {`${datas.entrydata.authorDetails.FirstName}${datas.entrydata.authorDetails.LastName}`}
+                                      {`${datas?.entrydata?.authorDetails?.FirstName}${datas?.entrydata?.authorDetails?.LastName}`}
                                     </h5>
                                   </div>
                                   <p className="text-black font-normal text-base">
@@ -346,8 +346,7 @@ const Listpage = ({ listdata }) => {
                          ?
 
                         <div className="pt-6 lg:pl-6 lg:pt-0">
-                          {datas.values.map(
-                            (response, ind) =>
+                          {datas.values.map((response, ind) =>
                               ind <= 2 && (
                                 <>
                                   {response.featuredEntry != 1 && (
