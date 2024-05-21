@@ -9,7 +9,7 @@ export default async function page() {
  let variable_category={"limit": 50, "offset":0,"hierarchylevel": 0}
  const postchannel=await fetchGraphQl(GET_POSTS_CHANNELLIST_QUERY,variable_category)  
 
-let variable_list = { limit: 50, offset: 0 };
+let variable_list = { limit: 50, offset: 0,requireData:{authorDetails:true,categories:true} };
 
 const Listdata=await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_list)
 

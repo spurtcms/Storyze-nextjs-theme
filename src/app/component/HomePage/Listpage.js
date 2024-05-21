@@ -8,6 +8,7 @@ import moment from "moment";
 
 const Listpage = ({ listdata }) => {
 
+
   const groupData = listdata?.channelEntriesList?.channelEntriesList.reduce(
     (acc, items) => {
       if (!acc[items.channelId]) {
@@ -55,10 +56,9 @@ const Listpage = ({ listdata }) => {
         {featuredata &&
           featuredata.map((result) => (
             <>
-              {result&&result.map((datas, index) => (
-              
+              {result&&result?.map((datas, index) => (
+             
                 <>
-              
                   {index==0 ?(
                     <>
                       <div>
@@ -355,7 +355,7 @@ const Listpage = ({ listdata }) => {
                                         <div>
                                           <p className="text-primary text-sm font-normal mb-2">
                                             {
-                                              response.categories[0].at(-1)
+                                              response?.categories[0]?.at(-1)
                                                 .categoryName
                                             }
                                           </p>

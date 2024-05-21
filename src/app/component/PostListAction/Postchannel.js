@@ -50,12 +50,13 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
   const PostListdata = listdat?.channelEntriesList?.channelEntriesList.filter(
     (response) => response.channelId === data?.channelDetail?.id
   );
-  console.log(PostListdata,'PostListdata')
-const SearchList=async()=>{
+
+  const SearchList=async()=>{
   if (search != "") {
-    let variable_list = { limit: 10, offset: 0, title: search };
+    let variable_list = { limit: 50, offset: 0, title: search,requireData:{authorDetails:true,categories:true}};
 
    let entries=await fetchGraphQl(GET_POSTS_LIST_QUERY,variable_list);
+
     setHeadLis(entries)
     if(entries){
       setCatLoader(false)
@@ -136,7 +137,7 @@ const SearchList=async()=>{
             <div className="w-full h-px bg-grey my-6"></div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 mb-12">
-              {PostListdata.slice(0, displayPosts).map((response) => (
+              {PostListdata?.slice(0, displayPosts)?.map((response) => (
                 <>
                   <div>
                     <Link href="">
@@ -150,7 +151,7 @@ const SearchList=async()=>{
                       />
                     </Link>
                     <p className="text-primary text-sm font-normal mb-2 my-3">
-                      {response?.categories[0].at(-1).categoryName}
+                      {response?.categories[0]?.at(-1)?.categoryName}
                     </p>
                     <div>
                       <Link href="">

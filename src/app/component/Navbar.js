@@ -8,7 +8,6 @@ import Link from "next/link";
 
 function Navbar({categories,catNo,setCatNo,postes,setPostes ,setOffset , scrollX ,setscrollX }){
 
-  console.log(catNo,'catNo1334')
     const router = useRouter();
     const searchParams = useSearchParams();
 

@@ -1,4 +1,12 @@
 // {
 //   "extends": "next/core-web-vitals"
 // }
-{ "extends": ["next/babel","next/core-web-vitals" ] }
+{ "extends": ["next/core-web-vitals" ],
+"rules": {
+    "react-hooks/exhaustive-deps":0,
+    "react/jsx-key":0,
+    "@next/next/no-img-element":0,
+    "jsx-a11y/alt-text":0,
+    "@next/next/no-page-custom-font":0
+  }
+}

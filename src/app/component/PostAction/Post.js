@@ -13,6 +13,7 @@ import PostSkeleton from "../../utilites/Skeleton/PostSkeleton";
 
 
 const Post = ({ data,listdata,params}) => {
+
   const [search,setSearch]=useState("")
 
     const [listdat,setHeadLis]=useState(listdata)

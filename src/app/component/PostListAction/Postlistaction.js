@@ -33,7 +33,7 @@ const Postlistaction =async({params}) => {
 
 
 
-    let variable_slug={ "limit": 50, "offset": 0}
+    let variable_slug={ "limit": 50, "offset": 0,requireData:{authorDetails:true,categories:true}}
 
     const postdatalist=await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_slug)
     
