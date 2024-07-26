@@ -10,8 +10,10 @@ import Header from "@/app/component/Header";
 // import ChannelSkeleton from "../../utilites/Skeleton/ChannelSkeleton";
 import Navbar from "../Navbar";
 import { useSearchParams } from "next/navigation";
+import { imageUrl } from "@/app/utilites/ImagePath";
 
 const Postchannel = ({ data, postdatalist, postchannel,params}) => {
+
   const [postes, setPostes] = useState(postchannel);
   const [categories, setCategories] = useState([]);
   const [catNo, setCatNo] = useState(null);
@@ -86,7 +88,7 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
         setTriger={setTriger}
       />
      
-       (
+       
         <>
           <Navbar
             categories={categories}
@@ -105,16 +107,16 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
                   {data?.channelDetail?.channelName}
                 </h4>
                 <div
-                  className="text-gray-500 text-xl font-normal line-clamp-3 mb-3"
+                  className="text-gray-500 text-xl font-normal line-clamp-3 mb-3 desc"
                   dangerouslySetInnerHTML={{
-                    __html: data?.channelDetail?.channelDescription,
+                    __html: data?.channelDetail?.channelDescription.replaceAll("<br>"," "),
                   }}
                 ></div>
               </div>
               {data?.channelDetail?.imagePath ? (
                 <Image
                   loader={handleLoad}
-                  src={data?.channelDetail?.imagePath}
+                  src={`${imageUrl}${data?.channelDetail?.imagePath}`}
                   alt="Picture of the author"
                   width={500}
                   height={500}
@@ -140,29 +142,29 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
               {PostListdata?.slice(0, displayPosts)?.map((response) => (
                 <>
                   <div>
-                    <Link href="">
+                     <Link href={`/post/${response?.slug}`}>
                       <Image
                         loader={handleLoad}
-                        src={response.coverImage}
+                        src={`${imageUrl}${response.coverImage}`}
                         alt="Picture of the author"
                         width={500}
                         height={500}
-                        className="w-full"
+                        className="w-full h-channel"
                       />
                     </Link>
                     <p className="text-primary text-sm font-normal mb-2 my-3">
                       {response?.categories[0]?.at(-1)?.categoryName}
                     </p>
                     <div>
-                      <Link href="">
+                    <Link href={`/post/${response?.slug}`}>
                         <h3 className="text-black text-2xl font-bold mb-2">
                           {response.title}
                         </h3>
                       </Link>
                      <div
-                        className="text-gray-500 text-lg font-light line-clamp-2 mb-3"
+                        className="text-gray-500 text-lg font-light line-clamp-2 mb-3 desc"
                         dangerouslySetInnerHTML={{
-                          __html: response?.description,
+                          __html: response?.description.replaceAll("<br>"," "),
                         }}
                       />
                       <div className="flex items-center gap-3">
@@ -171,7 +173,7 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
                             {response.authorDetails.ProfileImagePath ? (
                               <Image
                                 loader={handleLoad}
-                                src={response.authorDetails.ProfileImagePath}
+                                src={`${imageUrl}${response.authorDetails.ProfileImagePath}`}
                                 alt="Picture of the author"
                                 width={32}
                                 height={32}
@@ -211,7 +213,7 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
             )}
           </div>
         </>
-      )
+      
     
     </>
   );

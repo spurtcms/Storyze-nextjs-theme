@@ -2,6 +2,7 @@ import moment from 'moment'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import { imageUrl } from '../utilites/ImagePath'
 
 const Searchpage = ({listdata}) => {
 
@@ -21,11 +22,11 @@ const Searchpage = ({listdata}) => {
                     <Link href={`/post/${response?.slug}?catgoId=${response?.slug}`}>
                       <Image
                         loader={handleLoad}
-                        src={response.coverImage}
+                        src={`${imageUrl}${response.coverImage}`}
                         alt="Picture of the author"
                         width={500}
                         height={500}
-                        className="w-full"
+                        className="w-full h-channel"
                       />
                     </Link>
                     <p className="text-primary text-sm font-normal mb-2 my-3">
@@ -38,9 +39,9 @@ const Searchpage = ({listdata}) => {
                         </h3>
                       </Link>
                       <p
-                        className="text-gray-500 text-lg font-light line-clamp-2 mb-3"
+                        className="text-gray-500 text-lg font-light line-clamp-2 mb-3 desc"
                         dangerouslySetInnerHTML={{
-                          __html: response.description,
+                          __html: response.description.replaceAll("<br>"," "),
                         }}
                       ></p>
                       <div className="flex items-center gap-3">
@@ -49,7 +50,7 @@ const Searchpage = ({listdata}) => {
                             {response.authorDetails.ProfileImagePath ? (
                               <Image
                                 loader={handleLoad}
-                                src={response.authorDetails.ProfileImagePath}
+                                src={`${imageUrl}${response.authorDetails.ProfileImagePath}`}
                                 alt="Picture of the author"
                                 width={32}
                                 height={32}
@@ -85,7 +86,10 @@ const Searchpage = ({listdata}) => {
                                     width={500}
                                     height={100}
                                   />
+                                 
+
                               </div>
+                             
                              
                               </>
                               }

@@ -2,6 +2,7 @@ import { fetchGraphQl } from '@/app/api/graphicql';
 import { GET_POSTS_CHANNELLIST_QUERY, GET_POSTS_CHANNELLIST_SLUG_QUERY, GET_POSTS_LIST_QUERY } from '@/app/api/query';
 import React from 'react'
 import Postchannel from './Postchannel';
+import { notFound } from 'next/navigation';
 
 export async function generateMetadata({params}) {
 
@@ -42,7 +43,9 @@ const Postlistaction =async({params}) => {
   let variable_list = { channelSlug:slug};
   
   const postdata=await fetchGraphQl(GET_POSTS_CHANNELLIST_SLUG_QUERY, variable_list)
-
+  if(!postdata){
+    return notFound();
+  }
   return (
    <>
    <Postchannel data={postdata} postdatalist={postdatalist} postchannel={postchannel} params={params}/>

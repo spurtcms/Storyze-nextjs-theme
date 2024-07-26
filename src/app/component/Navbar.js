@@ -75,7 +75,6 @@ function Navbar({categories,catNo,setCatNo,postes,setPostes ,setOffset , scrollX
         
       }
     };
-
   return (
    <>
    <div className="max-w-screen-2xl m-auto px-10 sm:px-20 py-4">

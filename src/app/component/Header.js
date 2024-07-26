@@ -13,7 +13,7 @@ const Header = ({ search, setSearch, triger, setTriger, catNo }) => {
     <>
       <header className="bg-black-700 shadow-lg">
         <nav className="flex items-center justify-between  py-6 sm:px-20 px-6 sm:px-10 max-w-screen-2xl m-auto ">
-          <Link href="/">
+          <Link href="/" onClick={()=>setSearch("")}>
             <img src="/images/Spurt-logo.svg"></img>
           </Link>
           <ul className="list-none flex gap-4 items-center">

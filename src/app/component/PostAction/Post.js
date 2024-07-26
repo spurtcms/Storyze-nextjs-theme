@@ -8,12 +8,13 @@ import Header from "../Header";
 // import { fetchGraphQl } from "../../api/graphicql";
 // import { GET_POSTS_LIST_QUERY } from "../../api/query";
 import PostSkeleton from "../../utilites/Skeleton/PostSkeleton";
+import { imageUrl } from "@/app/utilites/ImagePath";
+import Link from "next/link";
 // import { useSearchParams } from "next/navigation";
 
 
 
 const Post = ({ data,listdata,params}) => {
-
   const [search,setSearch]=useState("")
 
     const [listdat,setHeadLis]=useState(listdata)
@@ -61,11 +62,11 @@ const Post = ({ data,listdata,params}) => {
    <div className="py-8 min-h-screen max-w-screen-2xl m-auto px-10 sm:px-20">
         <Image
           loader={handleLoad}
-          src={data?.channelEntryDetail?.coverImage}
+          src={`${imageUrl}${data?.channelEntryDetail?.coverImage}`}
           alt="Picture of the author"
           width={500}
           height={500}
-          className="w-full"
+          className="w-full h-postimg"
         />
         <div className="max-w-full lg:max-w-4xl m-auto">
           <div className="w-full h-px bg-grey mt-2 mb-4"></div>
@@ -74,7 +75,7 @@ const Post = ({ data,listdata,params}) => {
             {data?.channelEntryDetail?.authorDetails?.ProfileImagePath?
             <Image
             loader={handleLoad}
-            src={data?.channelEntryDetail?.authorDetails?.ProfileImagePath}
+            src={`${imageUrl}${data?.channelEntryDetail?.authorDetails?.ProfileImagePath}`}
             alt="Picture of the author"
             width={32}
             height={32}
@@ -99,7 +100,7 @@ const Post = ({ data,listdata,params}) => {
             </h3>
            
             
-            <p className="text-gray-500 text-lg font-light line-clamp-3 mb-3" dangerouslySetInnerHTML={{__html:data?.channelEntryDetail?.description}}></p>                 
+            <p className="text-gray-500 text-lg font-light mb-3 desc" dangerouslySetInnerHTML={{__html:data?.channelEntryDetail?.description.replaceAll("<br>"," ")}}></p>                 
           </div>
         </div>
         <div className="w-full h-px bg-grey my-6"></div>
@@ -110,25 +111,29 @@ const Post = ({ data,listdata,params}) => {
                 {result.id !== data?.channelEntryDetail?.id ? (
                   <>
                     <div>
+                    <Link href={`/post/${result?.slug}`}>
                       <Image
                         loader={handleLoad}
-                        src={result.coverImage}
+                        src={`${imageUrl}${result.coverImage}`}
                         alt="Picture of the author"
                         width={500}
                         height={500}
-                        className="w-full"
+                        className="w-full h-postim"
                       />
+                      </Link>
                       <p className="text-primary text-sm font-normal mb-2 my-3">
                         {result?.categories[0].at(-1).categoryName}
                       </p>
                       <div>
+                      <Link href={`/post/${result?.slug}`}>
                         <h3 className="text-black text-2xl font-bold mb-2">
                           {result.title}
                         </h3>
+                      </Link>  
                         <p
-                          className="text-gray-500 text-lg font-light line-clamp-2 mb-3"
+                          className="text-gray-500 text-lg font-light line-clamp-2 mb-3 desc"
                           dangerouslySetInnerHTML={{
-                            __html: result.description,
+                            __html: result.description.replaceAll("<br>"," "),
                           }}
                         ></p>
                         <div className="flex items-center gap-3">
@@ -137,7 +142,7 @@ const Post = ({ data,listdata,params}) => {
                             {result.authorDetails.ProfileImagePath?
                             <Image
                             loader={handleLoad}
-                            src={result.authorDetails.ProfileImagePath}
+                            src={`${imageUrl}${result.authorDetails.ProfileImagePath}`}
                             alt="Picture of the author"
                             width={32}
                             height={32}

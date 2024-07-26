@@ -87,7 +87,40 @@ body {
 .dark  .text-black-600{
   color: #FFFFFF;
 }
+.h-banner{
+  width: 100% !important;
+  height: 309px !important;
+}
+.h-image{
+  width: 100% !important;
+  height: 152px !important;
+}
+.h-postimg{
+  width: 100% !important;
+  height: 644px !important;
+}
+.h-postim{
+  width: 100% !important;
+  height: 152px !important;
+}
+.h-channel{
+  width: 100% !important;
+  height: 152px !important;
+}
+.desc p,.desc h1,.desc h2,.desc h3,.desc h5,.desc h6,.desc span{
+  color: #212529 !important;
+  font-weight: 300 !important;
+  font-size: 1.125rem !important;
+  line-height: 1.75rem !important;
+  background-color: transparent !important;
+  font-family: Roboto, sans-serif !important;
+  margin: 0 !important;
+}
 
+.dark .desc p,.dark .desc h1,.dark .desc h2,.dark .desc h3,.dark .desc h5,.dark .desc h6,.dark .desc span{
+  color: rgb(156 163 175) !important;
+  background-color: #121212!important;
+}
 @layer utilities {
   .text-balance {
     text-wrap: balance;

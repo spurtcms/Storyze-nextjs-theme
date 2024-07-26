@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import moment from "moment";
+import { imageUrl } from "@/app/utilites/ImagePath";
 
 
 const Listpage = ({ listdata }) => {
-
 
   const groupData = listdata?.channelEntriesList?.channelEntriesList.reduce(
     (acc, items) => {
@@ -47,6 +47,7 @@ const Listpage = ({ listdata }) => {
 // console.log(sortedArtists,'sortedArtists')
 
 // console.log(featuredata?.[0].splice(0,1,feturelists?.[0][0],"99oo9o9o9"))
+
   const hadleLoad = ({ src }) => {
     return src;
   };
@@ -73,11 +74,11 @@ const Listpage = ({ listdata }) => {
                             {datas?.entrydata?.coverImage && (
                               <Image
                                 loader={hadleLoad}
-                                src={datas?.entrydata?.coverImage}
+                                src={`${imageUrl}${datas?.entrydata?.coverImage}`}
                                 alt="Picture of the author"
                                 width={500}
                                 height={500}
-                                className="w-full"
+                                className="w-full h-banner"
                               />
                             )}
                           </Link>
@@ -97,10 +98,9 @@ const Listpage = ({ listdata }) => {
                               </Link>
                             </h3>
                             <p
-                              className="text-gray-500 text-lg font-light line-clamp-3 mb-3"
+                              className="text-gray-500 text-lg font-light line-clamp-3 mb-3 desc"
                               dangerouslySetInnerHTML={{
-                                __html: datas.entrydata.description,
-                              }}
+                                __html: datas.entrydata.description.replaceAll("<br>"," "),}}
                             ></p>
                             <div className="flex items-center gap-3">
                               {datas?.entrydata && (
@@ -112,8 +112,8 @@ const Listpage = ({ listdata }) => {
                                         <Image
                                           loader={hadleLoad}
                                           src={
-                                            datas?.entrydata?.authorDetails
-                                              ?.ProfileImagePath
+                                            `${imageUrl}${datas?.entrydata?.authorDetails
+                                              ?.ProfileImagePath}`
                                           }
                                           alt="Picture of the author"
                                           width={32}
@@ -161,19 +161,16 @@ const Listpage = ({ listdata }) => {
                          ?
                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 lg:pl-6 relative">
                             <>
-                                  {datas.values.map(
-                                    (response, inde) =>
-                                    
-                                      response.featuredEntry != 1 && (
+                                  {datas.values.filter(d=>d.featuredEntry!=1).map((response, inde) =>
+
                                         <>
-                                          {inde <= 3 &&
-                                            response.featuredEntry != 1 && (
+                                          {inde <= 3 && (
                                               <>
                                                 <div>
                                                   <Link href={`/post/${response?.slug}`}>
                                                     <Image
                                                       loader={hadleLoad}
-                                                      src={response.coverImage}
+                                                      src={`${imageUrl}${response.coverImage}`}
                                                       alt="Picture of the author"
                                                       width={500}
                                                       height={500}
@@ -194,10 +191,10 @@ const Listpage = ({ listdata }) => {
                                                       </Link>
                                                     </h3>
                                                     <p
-                                                      className="text-gray-500 text-lg font-light line-clamp-3 mb-3"
+                                                      className="text-gray-500 text-lg font-light line-clamp-3 mb-3 desc"
                                                       dangerouslySetInnerHTML={{
                                                         __html:
-                                                          response.description,
+                                                          response.description.replaceAll("<br>"," "),
                                                       }}
                                                     ></p>
                                                     <div className="flex items-center gap-3">
@@ -209,9 +206,9 @@ const Listpage = ({ listdata }) => {
                                                             <Image
                                                               loader={hadleLoad}
                                                               src={
-                                                                response
+                                                                `${imageUrl}${response
                                                                   .authorDetails
-                                                                  .ProfileImagePath
+                                                                  .ProfileImagePath}`
                                                               }
                                                               alt="Picture of the author"
                                                               width={32}
@@ -242,7 +239,7 @@ const Listpage = ({ listdata }) => {
                                               </>
                                             )}
                                         </>
-                                      )
+                                      
                                   )}
                             </>
                           </div>
@@ -268,16 +265,17 @@ const Listpage = ({ listdata }) => {
 
                       <div className="grid grid-cols-1 lg:grid-cols-2">
                         <div className="pb-6 lg:pr-6 border-b lg:border-r lg:border-b-0 border-grey">
-                          {index!=0&&datas.entrydata ? (
+                          {index!=0&&datas.entrydata ? 
+                          (
                             <>
                               <Link href={`/post/${datas?.entrydata?.slug}`}>
                                 <Image
                                   loader={hadleLoad}
-                                  src={datas.entrydata.coverImage}
+                                  src={`${imageUrl}${datas.entrydata.coverImage}`}
                                   alt="Picture of the author"
                                   width={500}
                                   height={500}
-                                  className="w-full"
+                                  className="w-full h-banner"
                                 />
                               </Link>
                               <p className="text-primary text-sm font-normal mb-2 my-3">
@@ -290,9 +288,9 @@ const Listpage = ({ listdata }) => {
                                   </Link>
                                 </h3>
                                 <p
-                                  className="text-gray-500 text-lg font-light line-clamp-3 mb-3"
+                                  className="text-gray-500 text-lg font-light line-clamp-3 mb-3 desc"
                                   dangerouslySetInnerHTML={{
-                                    __html: datas.entrydata.description,
+                                    __html: datas.entrydata.description.replaceAll("<br>"," "),
                                   }}
                                 ></p>
                                 <div className="flex items-center gap-3">
@@ -303,8 +301,8 @@ const Listpage = ({ listdata }) => {
                                         <Image
                                           loader={hadleLoad}
                                           src={
-                                            datas.entrydata.authorDetails
-                                              .ProfileImagePath
+                                            `${imageUrl}${datas.entrydata.authorDetails
+                                              .ProfileImagePath}`
                                           }
                                           alt="Picture of the author"
                                           width={32}
@@ -341,15 +339,11 @@ const Listpage = ({ listdata }) => {
                         </div>
 
 
-                        {(datas?.values?.find(value=>{return value.featuredEntry!==1}))
-                         
-                         ?
+                        {(datas?.values?.find(value=>{return value.featuredEntry!==1})) ?
 
-                        <div className="pt-6 lg:pl-6 lg:pt-0">
-                          {datas.values.map((response, ind) =>
+                         <div className="pt-6 lg:pl-6 lg:pt-0">
+                          {datas.values.filter(d=>d.featuredEntry!=1).map((response, ind) =>
                               ind <= 2 && (
-                                <>
-                                  {response.featuredEntry != 1 && (
                                     <>
                                       <div className="grid grid-cols-1 md:grid-cols-2 pb-3 mb-3 border-b border-grey gap-3 ">
                                         <div>
@@ -372,8 +366,8 @@ const Listpage = ({ listdata }) => {
                                                   <Image
                                                     loader={hadleLoad}
                                                     src={
-                                                      response.authorDetails
-                                                        .ProfileImagePath
+                                                      `${imageUrl}${response.authorDetails
+                                                        .ProfileImagePath}`
                                                     }
                                                     alt="Picture of the author"
                                                     width={32}
@@ -401,16 +395,15 @@ const Listpage = ({ listdata }) => {
                                         <Link href={`/post/${response?.slug}`}>
                                           <Image
                                             loader={hadleLoad}
-                                            src={response.coverImage}
+                                            src={`${imageUrl}${response.coverImage}`}
                                             alt="Picture of the author"
                                             width={260}
                                             height={260}
+                                            className="h-image"
                                           />
                                         </Link>
                                       </div>
                                     </>
-                                  )}
-                                </>
                               )
                           )}
                         </div>
