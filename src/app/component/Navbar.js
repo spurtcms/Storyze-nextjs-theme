@@ -94,7 +94,7 @@ function Navbar({categories,catNo,setCatNo,postes,setPostes ,setOffset , scrollX
             </button>
           )}
 
-          {postes?.channelList
+          {postes?.ChannelList
            ?.channellist && (
             <>
               <ul
@@ -113,7 +113,7 @@ function Navbar({categories,catNo,setCatNo,postes,setPostes ,setOffset , scrollX
                   {" "}
                   All
                 </li>
-                {postes?.channelList?.channellist?.map((data, index) => (
+                {postes?.ChannelList?.channellist?.map((data, index) => (
                   <>
                   <li
                     key={index}

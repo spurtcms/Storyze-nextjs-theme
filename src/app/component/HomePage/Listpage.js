@@ -9,7 +9,7 @@ import { imageUrl } from "@/app/utilites/ImagePath";
 
 const Listpage = ({ listdata }) => {
 
-  const groupData = listdata?.channelEntriesList?.channelEntriesList.reduce(
+  const groupData = listdata?.ChannelEntriesList?.channelEntriesList.reduce(
     (acc, items) => {
       if (!acc[items.channelId]) {
         acc[items.channelId] = [items];
@@ -44,13 +44,12 @@ const Listpage = ({ listdata }) => {
   //   ...featuredata[0].slice(1),
   //   featuredata?.[0][0],
   // ];
-// console.log(sortedArtists,'sortedArtists')
 
-// console.log(featuredata?.[0].splice(0,1,feturelists?.[0][0],"99oo9o9o9"))
 
   const hadleLoad = ({ src }) => {
     return src;
   };
+
   return (
     <>
       <div className="min-h-screen max-w-screen-2xl m-auto px-10 sm:px-20 py-4">
@@ -74,11 +73,15 @@ const Listpage = ({ listdata }) => {
                             {datas?.entrydata?.coverImage && (
                               <Image
                                 loader={hadleLoad}
-                                src={`${imageUrl}${datas?.entrydata?.coverImage}`}
+                                src={`${datas?.entrydata?.coverImage}`}
                                 alt="Picture of the author"
                                 width={500}
                                 height={500}
                                 className="w-full h-banner"
+                                onError={({ currentTarget }) => {
+                                  currentTarget.onerror = null;
+                                  currentTarget.src = "/img/no-image.png";
+                              }}
                               />
                             )}
                           </Link>
@@ -89,7 +92,7 @@ const Listpage = ({ listdata }) => {
                                 ?.categoryName
                             }
                           </p>
-                          <div>
+                          < div>
                             <h3 className="text-black text-3xl font-bold mb-2">
                               {" "}
                               <Link href={`/post/${datas?.entrydata?.slug}`}>
@@ -108,12 +111,12 @@ const Listpage = ({ listdata }) => {
                                   <div className="flex items-center gap-2">
                                     <div class="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
                                       {datas?.entrydata?.authorDetails
-                                        ?.ProfileImagePath ? (
+                                        ?.profileImagePath ? (
                                         <Image
                                           loader={hadleLoad}
                                           src={
                                             `${imageUrl}${datas?.entrydata?.authorDetails
-                                              ?.ProfileImagePath}`
+                                              ?.profileImagePath}`
                                           }
                                           alt="Picture of the author"
                                           width={32}
@@ -121,14 +124,14 @@ const Listpage = ({ listdata }) => {
                                         />
                                       ) : (
                                         <>
-                                          {`${datas?.entrydata?.authorDetails?.FirstName} ${datas?.entrydata?.authorDetails?.LastName}`.charAt(
+                                          {`${datas?.entrydata?.authorDetails?.firstName} ${datas?.entrydata?.authorDetails?.lastName}`.charAt(
                                             0
                                           )}
                                         </>
                                       )}
                                     </div>
                                     <h5 className="text-primary text-base font-normal">
-                                      {`${datas?.entrydata?.authorDetails?.FirstName} ${datas?.entrydata?.authorDetails?.LastName}`}
+                                      {`${datas?.entrydata?.authorDetails?.firstName} ${datas?.entrydata?.authorDetails?.lastName}`}
                                     </h5>
                                   </div>
                                   <p className="text-black font-normal text-base">
@@ -170,10 +173,14 @@ const Listpage = ({ listdata }) => {
                                                   <Link href={`/post/${response?.slug}`}>
                                                     <Image
                                                       loader={hadleLoad}
-                                                      src={`${imageUrl}${response.coverImage}`}
+                                                      src={`${response.coverImage}`}
                                                       alt="Picture of the author"
                                                       width={500}
                                                       height={500}
+                                                      onError={({ currentTarget }) => {
+                                                        currentTarget.onerror = null;
+                                                        currentTarget.src = "/img/no-image.png";
+                                                    }}
                                                     />
                                                   </Link>
                                                   <p className="text-primary text-sm font-normal mb-2 my-3">
@@ -202,13 +209,13 @@ const Listpage = ({ listdata }) => {
                                                         <div class="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
                                                           {response
                                                             .authorDetails
-                                                            .ProfileImagePath ? (
+                                                            .profileImagePath ? (
                                                             <Image
                                                               loader={hadleLoad}
                                                               src={
                                                                 `${imageUrl}${response
-                                                                  .authorDetails
-                                                                  .ProfileImagePath}`
+                                                                  ?.authorDetails
+                                                                  ?.profileImagePath}`
                                                               }
                                                               alt="Picture of the author"
                                                               width={32}
@@ -216,14 +223,14 @@ const Listpage = ({ listdata }) => {
                                                             />
                                                           ) : (
                                                             <>
-                                                              {`${response.authorDetails.FirstName}${response.authorDetails.LastName}`.charAt(
+                                                              {`${response.authorDetails.firstName}${response.authorDetails.lastName}`.charAt(
                                                                 0
                                                               )}
                                                             </>
                                                           )}
                                                         </div>
                                                         <h5 className="text-primary text-base font-normal">
-                                                          {`${response.authorDetails.FirstName}${response.authorDetails.LastName}`}
+                                                          {`${response.authorDetails.firstName}${response.authorDetails.lastName}`}
                                                         </h5>
                                                       </div>
                                                       <p className="text-black font-normal text-base">
@@ -271,11 +278,15 @@ const Listpage = ({ listdata }) => {
                               <Link href={`/post/${datas?.entrydata?.slug}`}>
                                 <Image
                                   loader={hadleLoad}
-                                  src={`${imageUrl}${datas.entrydata.coverImage}`}
+                                  src={`${datas.entrydata.coverImage}`}
                                   alt="Picture of the author"
                                   width={500}
                                   height={500}
                                   className="w-full h-banner"
+                                  onError={({ currentTarget }) => {
+                                    currentTarget.onerror = null;
+                                    currentTarget.src = "/img/no-image.png";
+                                }}
                                 />
                               </Link>
                               <p className="text-primary text-sm font-normal mb-2 my-3">
@@ -297,12 +308,12 @@ const Listpage = ({ listdata }) => {
                                   <div className="flex items-center gap-2">
                                     <div class="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
                                       {datas.entrydata.authorDetails
-                                        .ProfileImagePath ? (
+                                        .profileImagePath ? (
                                         <Image
                                           loader={hadleLoad}
                                           src={
                                             `${imageUrl}${datas.entrydata.authorDetails
-                                              .ProfileImagePath}`
+                                              .profileImagePath}`
                                           }
                                           alt="Picture of the author"
                                           width={32}
@@ -310,14 +321,14 @@ const Listpage = ({ listdata }) => {
                                         />
                                       ) : (
                                         <>
-                                          {`${datas?.entrydata?.authorDetails?.FirstName} ${datas?.entrydata?.authorDetails?.LastName}`.charAt(
+                                          {`${datas?.entrydata?.authorDetails?.firstName} ${datas?.entrydata?.authorDetails?.lastName}`.charAt(
                                             0
                                           )}
                                         </>
                                       )}
                                     </div>
                                     <h5 className="text-primary text-base font-normal">
-                                      {`${datas?.entrydata?.authorDetails?.FirstName}${datas?.entrydata?.authorDetails?.LastName}`}
+                                      {`${datas?.entrydata?.authorDetails?.firstName}${datas?.entrydata?.authorDetails?.lastName}`}
                                     </h5>
                                   </div>
                                   <p className="text-black font-normal text-base">
@@ -362,12 +373,12 @@ const Listpage = ({ listdata }) => {
                                             <div className="flex items-center gap-2">
                                               <div class="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
                                                 {response.authorDetails
-                                                  .ProfileImagePath ? (
+                                                  .profileImagePath ? (
                                                   <Image
                                                     loader={hadleLoad}
                                                     src={
                                                       `${imageUrl}${response.authorDetails
-                                                        .ProfileImagePath}`
+                                                        .profileImagePath}`
                                                     }
                                                     alt="Picture of the author"
                                                     width={32}
@@ -375,14 +386,14 @@ const Listpage = ({ listdata }) => {
                                                   />
                                                 ) : (
                                                   <>
-                                                    {`${response.authorDetails.FirstName}${response.authorDetails.LastName}`.charAt(
+                                                    {`${response.authorDetails.firstName}${response.authorDetails.lastName}`.charAt(
                                                       0
                                                     )}
                                                   </>
                                                 )}
                                               </div>
                                               <h5 className="text-primary text-base font-normal">
-                                                {`${response.authorDetails.FirstName}${response.authorDetails.LastName}`}
+                                                {`${response.authorDetails.firstName}${response.authorDetails.lastName}`}
                                               </h5>
                                             </div>
                                             <p className="text-black font-normal text-base">
@@ -395,11 +406,15 @@ const Listpage = ({ listdata }) => {
                                         <Link href={`/post/${response?.slug}`}>
                                           <Image
                                             loader={hadleLoad}
-                                            src={`${imageUrl}${response.coverImage}`}
+                                            src={`${response.coverImage}`}
                                             alt="Picture of the author"
                                             width={260}
                                             height={260}
                                             className="h-image"
+                                            onError={({ currentTarget }) => {
+                                              currentTarget.onerror = null;
+                                              currentTarget.src = "/img/no-image.png";
+                                          }}
                                           />
                                         </Link>
                                       </div>

@@ -53,7 +53,7 @@ const Listpost = ({headList,postchannel}) => {
       useEffect(()=>{
         setCatLoader(false)
       },[])
-    
+
   
     const handleScroll = (e) => {
   
@@ -80,11 +80,13 @@ const Listpost = ({headList,postchannel}) => {
             :
             search==""?
             <>
+      
             <Navbar categories={categories} catNo={catNo} setCatNo={setCatNo} postes={postes} setPostes={setPostes} setOffset={setOffset} scrollX={scrollX} setscrollX={setscrollX}/>
             <Listpage listdata={headList}/>
             </>
             :
             <>
+           
             <Searchpage listdata={listdata}/>
             </>
           }

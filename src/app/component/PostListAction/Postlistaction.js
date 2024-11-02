@@ -4,52 +4,55 @@ import React from 'react'
 import Postchannel from './Postchannel';
 import { notFound } from 'next/navigation';
 
-export async function generateMetadata({params}) {
+export async function generateMetadata({ params }) {
 
-    let variable_list = { limit: 20, offset: 0 };
-  
-  const datas=await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_list)
-   let title=''
-   let description=''
-   datas?.channelEntriesList?.channelEntriesList.map((response)=>{
-    
-      if(response.slug==params.slug){
-        title = response.metaTitle
-        description=response.metaDescription
-      }
-    })
-    return {
-      title,
-      description,
-    };
-   
-  }
+  let variable_list = { limit: 20, offset: 0 };
 
-const Postlistaction =async({params}) => {
+  const datas = await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_list)
+  let title = ''
+  let description = ''
+  datas?.channelEntriesList?.channelEntriesList.map((response) => {
 
-    let {slug}=params
+    if (response.slug == params.slug) {
+      title = response.metaTitle
+      description = response.metaDescription
+    }
+  })
+  return {
+    title,
+    description,
+  };
 
-    let variable_category={"limit": 50, "offset":0,"hierarchylevel": 0}
-    const postchannel=await fetchGraphQl(GET_POSTS_CHANNELLIST_QUERY,variable_category)  
+}
+
+const Postlistaction = async ({ params }) => {
+
+  let { slug } = params
+
+  let variable_category = { "limit": 50, "offset": 0, "hierarchylevel": 0 }
+  const postchannel = await fetchGraphQl(GET_POSTS_CHANNELLIST_QUERY, variable_category)
 
 
 
-    let variable_slug={ "limit": 50, "offset": 0,requireData:{authorDetails:true,categories:true}}
+  // let variable_slug = { "limit": 50, "offset": 0, requireData: { authorDetails: true, categories: true } }
+  let variable_slug = { "commonFilter": { "limit": 10, "offset": 0 }, "entryFilter": { "categorySlug": "blog", }, "AdditionalData": { "authorDetails": true, "categories": true } };
 
-    const postdatalist=await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_slug)
-    
-  
-  
-  let variable_list = { channelSlug:slug};
-  
-  const postdata=await fetchGraphQl(GET_POSTS_CHANNELLIST_SLUG_QUERY, variable_list)
-  if(!postdata){
+
+  const postdatalist = await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_slug)
+
+
+
+  let variable_list = { "slug": slug,"active":true };
+
+  const postdata = await fetchGraphQl(GET_POSTS_CHANNELLIST_SLUG_QUERY, variable_list)
+  console.log(postdata,"postdata")
+  if (!postdata) {
     return notFound();
   }
   return (
-   <>
-   <Postchannel data={postdata} postdatalist={postdatalist} postchannel={postchannel} params={params}/>
-   </>
+    <>
+      <Postchannel data={postdata} postdatalist={postdatalist} postchannel={postchannel} params={params} />
+    </>
   )
 }
 
