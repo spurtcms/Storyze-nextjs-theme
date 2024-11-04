@@ -146,14 +146,15 @@ const Listpage = ({ listdata }) => {
                           </div>
                           </>
                           :
-                               <div dir="ltr">
-                                  <Image
-                                    className=" p-10"
-                                    src="/images/no data.svg"
-                                    width={500}
-                                    height={100}
-                                  />
-                              </div>
+                              //  <div dir="ltr">
+                              //     <Image
+                              //       className=" p-10"
+                              //       src="/images/no data.svg"
+                              //       width={500}
+                              //       height={100}
+                              //     />
+                              // </div> 
+                              <></>
                                } 
                           </div> 
                         

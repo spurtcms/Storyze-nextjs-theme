@@ -32,20 +32,20 @@ const Postlistaction = async ({ params }) => {
   let variable_category = { "limit": 50, "offset": 0, "hierarchylevel": 0 }
   const postchannel = await fetchGraphQl(GET_POSTS_CHANNELLIST_QUERY, variable_category)
 
+  let variable_list = { "slug": slug,"active":true };
+
+  const postdata = await fetchGraphQl(GET_POSTS_CHANNELLIST_SLUG_QUERY, variable_list)
 
 
   // let variable_slug = { "limit": 50, "offset": 0, requireData: { authorDetails: true, categories: true } }
-  let variable_slug = { "commonFilter": { "limit": 10, "offset": 0 }, "entryFilter": { "categorySlug": "blog", }, "AdditionalData": { "authorDetails": true, "categories": true } };
+  let variable_slug = { "commonFilter": { "limit": 0, "offset": 0 }, "entryFilter": { "categorySlug": "","channelId":postdata?.ChannelDetail?.id }, "AdditionalData": { "authorDetails": true, "categories": true } };
 
 
   const postdatalist = await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_slug)
 
 
 
-  let variable_list = { "slug": slug,"active":true };
 
-  const postdata = await fetchGraphQl(GET_POSTS_CHANNELLIST_SLUG_QUERY, variable_list)
-  console.log(postdata,"postdata")
   if (!postdata) {
     return notFound();
   }

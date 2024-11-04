@@ -67,6 +67,10 @@ console.log(data,"data")
               width={500}
               height={500}
               className="w-full h-postimg"
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null;
+                currentTarget.src = "/img/no-image.png";
+            }}
             />
             <div className="max-w-full lg:max-w-4xl m-auto">
               <div className="w-full h-px bg-grey mt-2 mb-4"></div>
@@ -100,7 +104,7 @@ console.log(data,"data")
                 </h3>
 
 
-                <p className="text-gray-500 text-lg font-light mb-3 desc" dangerouslySetInnerHTML={{ __html: data?.ChannelEntryDetail?.description.replaceAll("<br>", " ") }}></p>
+                <p className="text-gray-500 text-lg font-light mb-3 desc [&_iframe]:aspect-video" dangerouslySetInnerHTML={{ __html: data?.ChannelEntryDetail?.description.replaceAll("<br>", " ") }}></p>
               </div>
             </div>
             <div className="w-full h-px bg-grey my-6"></div>
@@ -119,6 +123,10 @@ console.log(data,"data")
                               width={500}
                               height={500}
                               className="w-full h-postim"
+                              onError={({ currentTarget }) => {
+                                currentTarget.onerror = null;
+                                currentTarget.src = "/img/no-image.png";
+                            }}
                             />
                           </Link>
                           <p className="text-primary text-sm font-normal mb-2 my-3">

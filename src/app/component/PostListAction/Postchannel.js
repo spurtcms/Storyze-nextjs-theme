@@ -49,8 +49,8 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
     setDisplayPosts(displayPosts + incrementInitialPostList);
   };
 
-  const PostListdata = listdat?.channelEntriesList?.channelEntriesList.filter(
-    (response) => response.channelId === data?.channelDetail?.id
+  const PostListdata = listdat?.ChannelEntriesList?.channelEntriesList.filter(
+    (response) => response.channelId === data?.ChannelDetail?.id
   );
 
   const SearchList=async()=>{
@@ -79,6 +79,8 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
   //     setCatLoader(false);
   //   }
   // }, []);
+
+  console.log(postchannel,"PostListdata")
   return (
     <>
       <Header
@@ -104,19 +106,19 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
             <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-6">
               <div className="flex flex-col gap-4">
                 <h4 className="text-black text-5xl font-bold">
-                  {data?.channelDetail?.channelName}
+                  {data?.ChannelDetail?.channelName}
                 </h4>
                 <div
                   className="text-gray-500 text-xl font-normal line-clamp-3 mb-3 desc"
                   dangerouslySetInnerHTML={{
-                    __html: data?.channelDetail?.channelDescription.replaceAll("<br>"," "),
+                    __html: data?.ChannelDetail?.channelDescription.replaceAll("<br>"," "),
                   }}
                 ></div>
               </div>
-              {data?.channelDetail?.imagePath ? (
+              {data?.ChannelDetail?.imagePath ? (
                 <Image
                   loader={handleLoad}
-                  src={`${imageUrl}${data?.channelDetail?.imagePath}`}
+                  src={`${imageUrl}${data?.ChannelDetail?.imagePath}`}
                   alt="Picture of the author"
                   width={500}
                   height={500}
@@ -145,11 +147,15 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
                      <Link href={`/post/${response?.slug}`}>
                       <Image
                         loader={handleLoad}
-                        src={`${imageUrl}${response.coverImage}`}
+                        src={`${response.coverImage}`}
                         alt="Picture of the author"
                         width={500}
                         height={500}
                         className="w-full h-channel"
+                        onError={({ currentTarget }) => {
+                          currentTarget.onerror = null;
+                          currentTarget.src = "/img/no-image.png";
+                      }}
                       />
                     </Link>
                     <p className="text-primary text-sm font-normal mb-2 my-3">
@@ -170,24 +176,24 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
                       <div className="flex items-center gap-3">
                         <div className="flex items-center gap-2">
                           <div class="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
-                            {response.authorDetails.ProfileImagePath ? (
+                            {response.authorDetails.profileImagePath ? (
                               <Image
                                 loader={handleLoad}
-                                src={`${imageUrl}${response.authorDetails.ProfileImagePath}`}
+                                src={`${imageUrl}${response.authorDetails.profileImagePath}`}
                                 alt="Picture of the author"
                                 width={32}
                                 height={32}
                               />
                             ) : (
                               <>
-                                {`${response.authorDetails.FirstName} ${response.authorDetails.LastName}`.charAt(
+                                {`${response?.authorDetails?.firstName} ${response?.authorDetails?.lastName}`.charAt(
                                   0
                                 )}
                               </>
                             )}
                           </div>
                           <h5 className="text-primary text-base font-normal">
-                            {`${response.authorDetails.FirstName} ${response.authorDetails.LastName}`}
+                            {`${response?.authorDetails?.firstName} ${response?.authorDetails?.lastName}`}
                           </h5>
                         </div>
                         <p className="text-black font-normal text-base">
