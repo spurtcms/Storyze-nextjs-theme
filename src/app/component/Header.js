@@ -9,6 +9,9 @@ const Header = ({ search, setSearch, triger, setTriger, catNo }) => {
     setSearch(e.target.value);
     setTriger(triger + 1);
   };
+
+
+  
   return (
     <>
       <header className="bg-black-700 shadow-lg">

@@ -38,7 +38,22 @@ const Listpost = ({headList,postchannel}) => {
   
      const searchList=async()=>{
       if(triger!=0){
-        let variable_list = { limit: 30, offset: 0,title:search,channelId:channelid,requireData:{authorDetails:true,categories:true}};
+        // let variable_list = { limit: 30, offset: 0,title:search,channelId:channelid,AdditionalData:{authorDetails:true,categories:true}};
+
+        let variable_list = {
+          "commonFilter": {
+            "limit": 10,
+            "offset": 0,
+            "keyword":search
+          },
+          "entryFilter": {
+            "Status": "Publish"
+          },
+          "AdditionalData": {
+            "categories": true,
+            "authorDetails":true
+          }
+        }
   
       let entries=await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_list)  
        setHeadList(entries)
@@ -86,7 +101,6 @@ const Listpost = ({headList,postchannel}) => {
             </>
             :
             <>
-           
             <Searchpage listdata={listdata}/>
             </>
           }

@@ -6,7 +6,21 @@ import { notFound } from 'next/navigation';
 
 export async function generateMetadata({ params }) {
 
-  let variable_list = { limit: 20, offset: 0 };
+  // let variable_list = { limit: 20, offset: 0 };
+  let variable_list = {
+    "commonFilter": {
+      "limit": 10,
+      "offset": 0,
+      "keyword":""
+    },
+    "entryFilter": {
+      "Status": "Publish"
+    },
+    "AdditionalData": {
+      "categories": true,
+      "authorDetails":true
+    }
+  }
 
   const datas = await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_list)
   let title = ''
@@ -38,8 +52,22 @@ const Postlistaction = async ({ params }) => {
 
 
   // let variable_slug = { "limit": 50, "offset": 0, requireData: { authorDetails: true, categories: true } }
-  let variable_slug = { "commonFilter": { "limit": 0, "offset": 0 }, "entryFilter": { "categorySlug": "","channelId":postdata?.ChannelDetail?.id }, "AdditionalData": { "authorDetails": true, "categories": true } };
+  // let variable_slug = { "commonFilter": { "limit": 0, "offset": 0 }, "entryFilter": { "categorySlug": "","channelId":postdata?.ChannelDetail?.id }, "AdditionalData": { "authorDetails": true, "categories": true } };
 
+  let variable_slug = {
+    "commonFilter": {
+      "limit": 10,
+      "offset": 0,
+      "keyword":""
+    },
+    "entryFilter": {
+      "Status": "Publish"
+    },
+    "AdditionalData": {
+      "categories": true,
+      "authorDetails":true
+    }
+  }
 
   const postdatalist = await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_slug)
 

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import moment from "moment";
 import { imageUrl } from "@/app/utilites/ImagePath";
+import NodataImg from "../NodataImg";
 
 
 const Listpage = ({ listdata }) => {
@@ -52,13 +53,15 @@ const Listpage = ({ listdata }) => {
 
   return (
     <>
+    {featuredata?.length != 0 ?
+    <>
       <div className="min-h-screen max-w-screen-2xl m-auto px-10 sm:px-20 py-4">
         {featuredata &&
           featuredata.map((result) => (
-            <>
+            <>{console.log(result,"resulttttt")}
               {result&&result?.map((datas, index) => (
              
-                <>
+                <>{console.log(datas,"datasbjbjbjbj")}
                   {index==0 ?(
                     <>
                       <div>
@@ -97,13 +100,13 @@ const Listpage = ({ listdata }) => {
                               {" "}
                               <Link href={`/post/${datas?.entrydata?.slug}`}>
                                 {" "}
-                                {datas.entrydata.title}{" "}
+                                {datas?.entrydata?.title}{" "}
                               </Link>
                             </h3>
                             <p
                               className="text-gray-500 text-lg font-light line-clamp-3 mb-3 desc"
                               dangerouslySetInnerHTML={{
-                                __html: datas.entrydata.description.replaceAll("<br>"," "),}}
+                                __html: datas?.entrydata?.description?.replaceAll("<br>"," "),}}
                             ></p>
                             <div className="flex items-center gap-3">
                               {datas?.entrydata && (
@@ -146,35 +149,38 @@ const Listpage = ({ listdata }) => {
                           </div>
                           </>
                           :
-                              //  <div dir="ltr">
-                              //     <Image
-                              //       className=" p-10"
-                              //       src="/images/no data.svg"
-                              //       width={500}
-                              //       height={100}
-                              //     />
-                              // </div> 
-                              <></>
+                               
+                              <>
+                              <div dir="rtl">
+                                  <Image className=" p-5"
+                                    src="/img/no-image.png"
+                                   width={663}  // Updated width
+                                  height={309} // Updated height
+                                    
+                                  />
+                              </div> 
+                           
+                              </>
                                } 
                           </div> 
                         
                           
                          
-                         {(datas.values.find(value=>{return value.featuredEntry!==1}))
+                         {(datas?.values?.find(value=>{return value?.featuredEntry!==1}))
                          
                          ?
                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 lg:pl-6 relative">
                             <>
                                   {datas.values.filter(d=>d.featuredEntry!=1).map((response, inde) =>
 
-                                        <>
+                                        <>{console.log(response,"response6789")}
                                           {inde <= 3 && (
                                               <>
                                                 <div>
                                                   <Link href={`/post/${response?.slug}`}>
                                                     <Image
                                                       loader={hadleLoad}
-                                                      src={`${response.coverImage}`}
+                                                      src={`${response?.coverImage}`}
                                                       alt="Picture of the author"
                                                       width={500}
                                                       height={500}
@@ -185,9 +191,9 @@ const Listpage = ({ listdata }) => {
                                                     />
                                                   </Link>
                                                   <p className="text-primary text-sm font-normal mb-2 my-3">
-                                                    {response.categories.map((d,inde)=>(
+                                                    {response?.categories.map((d,inde)=>(
                                                       <>
-                                                      {response.categories[inde].at(-1).categoryName}
+                                                      {response?.categories[inde].at(-1).categoryName}
                                                       </>
                                                     ))}
                                                     
@@ -202,16 +208,15 @@ const Listpage = ({ listdata }) => {
                                                       className="text-gray-500 text-lg font-light line-clamp-3 mb-3 desc"
                                                       dangerouslySetInnerHTML={{
                                                         __html:
-                                                          response.description.replaceAll("<br>"," "),
+                                                          response?.description?.replaceAll("<br>"," "),
                                                       }}
                                                     ></p>
                                                     <div className="flex items-center gap-3">
                                                       <div className="flex items-center gap-2">
                                                         <div class="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
-                                                          {response
-                                                            .authorDetails
-                                                            .profileImagePath ? (
-                                                            <Image
+                                                          {response?.authorDetails?.profileImagePath ? (
+                                                              <>
+                                                                 <Image
                                                               loader={hadleLoad}
                                                               src={
                                                                 `${imageUrl}${response
@@ -222,21 +227,23 @@ const Listpage = ({ listdata }) => {
                                                               width={32}
                                                               height={32}
                                                             />
+                                                              </>
+                                                           
                                                           ) : (
                                                             <>
-                                                              {`${response.authorDetails.firstName}${response.authorDetails.lastName}`.charAt(
+                                                              {`${response?.authorDetails?.firstName}${response?.authorDetails?.lastName}`.charAt(
                                                                 0
                                                               )}
                                                             </>
                                                           )}
                                                         </div>
                                                         <h5 className="text-primary text-base font-normal">
-                                                          {`${response.authorDetails.firstName}${response.authorDetails.lastName}`}
+                                                          {`${response?.authorDetails?.firstName}${response?.authorDetails?.lastName}`}
                                                         </h5>
                                                       </div>
                                                       <p className="text-black font-normal text-base">
                                                         {moment(
-                                                          response.createdOn
+                                                          response?.createdOn
                                                         ).format(
                                                           "MMM DD, YYYY"
                                                         )}
@@ -441,6 +448,26 @@ const Listpage = ({ listdata }) => {
             </>
           ))}
       </div>
+    </>:
+    <>
+      <div className=" px-5 lg:px-20  py-32 col-span-full grid place-items-center nodata">
+                <div className="flex flex-col items-center max-w-[408px] ">
+                    {/* <img src="\img\noData.svg" alt="nodata" className="dark:hidden" /> */}
+                    <img
+                        src="/img/nodatafilter.svg"
+                        alt="nodata"
+                    />
+                    <h1 className=" text-2xl leading-6 font-medium text-black   mt-6 text-center dark:dark:text-light-1">
+                        {/* {search ? "No matching search results" : "No Listing Yet !"} */}
+                        No Listing Yet !
+                    </h1>
+                   
+                </div>
+            </div>
+    </>
+    }
+      
+
     </>
   );
 };

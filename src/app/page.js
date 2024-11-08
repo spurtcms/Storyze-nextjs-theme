@@ -14,8 +14,23 @@ export default async function page() {
     }
     const postchannel = await fetchGraphQl(GET_POSTS_CHANNELLIST_QUERY, variable_category)
 
-    let  variable_list={ "commonFilter": {"limit": 10,"offset": 0}, "entryFilter": { "categorySlug": "",}, "AdditionalData": { "authorDetails": true, "categories": true }};
+    // let  variable_list={ "commonFilter": {"limit": 10,"offset": 0}, "entryFilter": { "categorySlug": "",}, "AdditionalData": { "authorDetails": true, "categories": true }};
 
+    let variable_list = {
+        "commonFilter": {
+          "limit": 10,
+          "offset": 0,
+          "keyword":""
+        },
+        "entryFilter": {
+          "Status": "Publish"
+        },
+        "AdditionalData": {
+          "categories": true,
+          "authorDetails":true
+        }
+      }
+    
     const Listdata = await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_list)
     return (
         <>

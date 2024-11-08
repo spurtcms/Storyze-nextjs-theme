@@ -118,7 +118,7 @@ console.log(data,"data")
                           <Link href={`/post/${result?.slug}`}>
                             <Image
                               loader={handleLoad}
-                              src={`${result.coverImage}`}
+                              src={`${result?.coverImage}`}
                               alt="Picture of the author"
                               width={500}
                               height={500}
@@ -130,45 +130,45 @@ console.log(data,"data")
                             />
                           </Link>
                           <p className="text-primary text-sm font-normal mb-2 my-3">
-                            {result?.categories[0].at(-1).categoryName}
+                            {result?.categories[0]?.at(-1)?.categoryName}
                           </p>
                           <div>
                             <Link href={`/post/${result?.slug}`}>
                               <h3 className="text-black text-2xl font-bold mb-2">
-                                {result.title}
+                                {result?.title}
                               </h3>
                             </Link>
                             <p
                               className="text-gray-500 text-lg font-light line-clamp-2 mb-3 desc"
                               dangerouslySetInnerHTML={{
-                                __html: result.description.replaceAll("<br>", " "),
+                                __html: result?.description?.replaceAll("<br>", " "),
                               }}
                             ></p>
                             <div className="flex items-center gap-3">
                               <div className="flex items-center gap-2">
                                 <div class="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
-                                  {result.authorDetails.profileImagePath ?
+                                  {result?.authorDetails?.profileImagePath ?
                                     <Image
                                       loader={handleLoad}
-                                      src={`${imageUrl}${result.authorDetails.profileImagePath}`}
+                                      src={`${imageUrl}${result?.authorDetails?.profileImagePath}`}
                                       alt="Picture of the author"
                                       width={32}
                                       height={32}
                                     />
                                     :
                                     <>
-                                      {`${result.authorDetails.firstName} ${result.authorDetails.lastName}`.charAt(0)}
+                                      {`${result?.authorDetails?.firstName} ${result?.authorDetails?.lastName}`.charAt(0)}
                                     </>
                                   }
 
                                 </div>
                                 <h5 className="text-primary text-base font-normal">
-                                  {`${result.authorDetails.firstName} ${result.authorDetails.lastName}`}
+                                  {`${result?.authorDetails?.firstName} ${result?.authorDetails?.lastName}`}
                                 </h5>
                               </div>
                               <p className="text-black font-normal text-base">
 
-                                {moment(result.createdOn).format("MMM DD, YYYY")}
+                                {moment(result?.createdOn).format("MMM DD, YYYY")}
                               </p>
                             </div>
                           </div>

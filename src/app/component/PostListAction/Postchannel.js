@@ -11,6 +11,9 @@ import Header from "@/app/component/Header";
 import Navbar from "../Navbar";
 import { useSearchParams } from "next/navigation";
 import { imageUrl } from "@/app/utilites/ImagePath";
+import NodataImg from "../NodataImg";
+import { searchapi } from "./searchapi";
+
 
 const Postchannel = ({ data, postdatalist, postchannel,params}) => {
 
@@ -54,15 +57,33 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
   );
 
   const SearchList=async()=>{
+
   if (search != "") {
-    let variable_list = { limit: 50, offset: 0, title: search,requireData:{authorDetails:true,categories:true}};
+    searchapi(search, setHeadLis, setCatLoader )
+    // let variable_list = { limit: 50, offset: 0, title: search,requireData:{authorDetails:true,categories:true}};
+  //   let variable_list = {
+  //     "commonFilter": {
+  //       "limit": 10,
+  //       "offset": 0,
+  //       "keyword":search
+  //     },
+  //     "entryFilter": {
+  //       "Status": "Publish"
+  //     },
+  //     "AdditionalData": {
+  //       "categories": true,
+  //       "authorDetails":true
+  //     }
+  //   }
 
-   let entries=await fetchGraphQl(GET_POSTS_LIST_QUERY,variable_list);
+    
 
-    setHeadLis(entries)
-    if(entries){
-      setCatLoader(false)
-    }
+  //  let entries=await fetchGraphQl(GET_POSTS_LIST_QUERY,variable_list);
+
+  //   setHeadLis(entries)
+  //   if(entries){
+  //     setCatLoader(false)
+  //   }
     
   }
   else{
@@ -79,8 +100,9 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
   //     setCatLoader(false);
   //   }
   // }, []);
-
+console.log(search,'search')
   console.log(postchannel,"PostListdata")
+  console.log(data,"data678")
   return (
     <>
       <Header
@@ -103,6 +125,8 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
             setscrollX={setscrollX}
           />
           <div className=" py-8 min-h-screen max-w-screen-2xl m-auto px-10 sm:px-20">
+
+            
             <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-6">
               <div className="flex flex-col gap-4">
                 <h4 className="text-black text-5xl font-bold">
@@ -138,9 +162,12 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
                 ""
               )}
             </div>
-            <div className="w-full h-px bg-grey my-6"></div>
+            
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 mb-12">
+              {PostListdata?.length != 0 ?
+              <>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 mb-12">
+                
               {PostListdata?.slice(0, displayPosts)?.map((response) => (
                 <>
                   <div>
@@ -176,10 +203,10 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
                       <div className="flex items-center gap-3">
                         <div className="flex items-center gap-2">
                           <div class="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
-                            {response.authorDetails.profileImagePath ? (
+                            {response?.authorDetails?.profileImagePath ? (
                               <Image
                                 loader={handleLoad}
-                                src={`${imageUrl}${response.authorDetails.profileImagePath}`}
+                                src={`${imageUrl}${response?.authorDetails?.profileImagePath}`}
                                 alt="Picture of the author"
                                 width={32}
                                 height={32}
@@ -204,8 +231,9 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
                   </div>
                 </>
               ))}
-            </div>
-            {displayPosts < PostListdata.length ? (
+               </div>
+
+              {displayPosts < PostListdata.length ? (
               <div className="flex justify-center">
                 <button
                   className="px-4 py-2 rounded-full text-white text-base font-medium bg-dark-grey"
@@ -217,6 +245,18 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
             ) : (
               ""
             )}
+             
+              </>:
+              <>
+                 <div className="w-full h-px bg-grey my-6">
+                <NodataImg/>
+
+            </div>
+              </>
+              }
+            
+           
+            
           </div>
         </>
       
