@@ -76,7 +76,7 @@ const Listpage = ({ listdata }) => {
                           
                           
                           <>
-                          <Link href={`/post/${datas?.entrydata?.slug}`}>
+                          <Link href={`/post/${datas?.entrydata?.slug}/${datas?.entrydata?.channelId}`}>
                             {datas?.entrydata?.coverImage && (
                               <Image
                                 loader={hadleLoad}
@@ -102,7 +102,7 @@ const Listpage = ({ listdata }) => {
                           < div>
                             <h3 className="text-black text-3xl font-bold mb-2">
                               {" "}
-                              <Link href={`/post/${datas?.entrydata?.slug}`}>
+                              <Link href={`/post/${datas?.entrydata?.slug}/${datas?.entrydata?.channelId}`}>
                                 {" "}
                                 {datas?.entrydata?.title}{" "}
                               </Link>
@@ -181,7 +181,7 @@ const Listpage = ({ listdata }) => {
                                           {inde <= 3 && (
                                               <>
                                                 <div>
-                                                  <Link href={`/post/${response?.slug}`}>
+                                                  <Link href={`/post/${response?.slug}/${response?.channelId}`}>
                                                     <Image
                                                       loader={hadleLoad}
                                                       src={`${response?.coverImage}`}
@@ -204,7 +204,7 @@ const Listpage = ({ listdata }) => {
                                                   </p>
                                                   <div>
                                                     <h3 className="text-black  text-2xl font-bold mb-2">
-                                                      <Link href={`/post/${response?.slug}`}>
+                                                    <Link href={`/post/${response?.slug}/${response?.channelId}`}>
                                                         {response.title}
                                                       </Link>
                                                     </h3>
@@ -287,7 +287,7 @@ const Listpage = ({ listdata }) => {
                           {index!=0&&datas.entrydata ? 
                           (
                             <>
-                              <Link href={`/post/${datas?.entrydata?.slug}`}>
+                              <Link href={`/post/${datas?.entrydata?.slug}/${datas?.entrydata?.channelId}`}>
                                 <Image
                                   loader={hadleLoad}
                                   src={`${datas.entrydata.coverImage}`}
@@ -306,7 +306,7 @@ const Listpage = ({ listdata }) => {
                               </p>
                               <div>
                                 <h3 className="text-black  text-3xl font-bold mb-2">
-                                  <Link href={`/post/${datas?.entrydata?.slug}`}>
+                                <Link href={`/post/${datas?.entrydata?.slug}/${datas?.entrydata?.channelId}`}>
                                     {datas.entrydata.title}
                                   </Link>
                                 </h3>
@@ -377,7 +377,7 @@ const Listpage = ({ listdata }) => {
                                             }
                                           </p>
                                           <h3 className="text-black text-2xl font-bold mb-2">
-                                            <Link href={`/post/${response?.slug}`}>
+                                          <Link href={`/post/${response?.slug}/${response?.channelId}`}>
                                               {response.title}
                                             </Link>
                                           </h3>
@@ -415,7 +415,7 @@ const Listpage = ({ listdata }) => {
                                             </p>
                                           </div>
                                         </div>
-                                        <Link href={`/post/${response?.slug}`}>
+                                        <Link href={`/post/${response?.slug}/${response?.channelId}`}>
                                           <Image
                                             loader={hadleLoad}
                                             src={`${response.coverImage}`}

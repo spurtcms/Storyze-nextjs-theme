@@ -26,10 +26,15 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
 
   const searchParams = useSearchParams();
 
+  console.log(searchParams,"searchParamslplpp")
+
   const channelIdvalue = searchParams.get('channelId')
 
   console.log(channelIdvalue,"channelIdvaluevalue")
+
   params.channelId = channelIdvalue
+
+  console.log(params.channelId,"paramsloloolo")
 
   // const catgoId = searchParams.get("catgoId");
   const catgoId = params.slug;

@@ -16,7 +16,7 @@ import { useSearchParams } from "next/navigation";
 
 
 const Post = ({ data, listdata, params }) => {
-  console.log(params?.slug,"paramsvalue")
+  console.log(data,"paramsvalue")
   const [search, setSearch] = useState("")
 
   const [listdat, setHeadLis] = useState(listdata)

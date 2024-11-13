@@ -30,7 +30,7 @@ const Postaction = async ({ params }) => {
  console.log(variable_slug,"variable_slug")
 
   const postes = await fetchGraphQl(GET_POSTS_SLUG_QUERY, variable_slug)
-
+console.log(postes,'sdadasdasdas')
   if (!postes) {
     return notFound();
   }
