@@ -10,6 +10,7 @@ import NodataImg from "../NodataImg";
 
 const Listpage = ({ listdata }) => {
 
+  console.log(listdata,"ChannelEntriesListdaata")
   const groupData = listdata?.ChannelEntriesList?.channelEntriesList.reduce(
     (acc, items) => {
       if (!acc[items.channelId]) {
@@ -21,6 +22,8 @@ const Listpage = ({ listdata }) => {
     },
     {}
   );
+
+  console.log(groupData,"groupData")
   let initialdata = [];
   for (const key in groupData) {
     initialdata.push({ detail: key, values: groupData[key] });
@@ -51,6 +54,7 @@ const Listpage = ({ listdata }) => {
     return src;
   };
 
+  console.log(featuredata,"featuredata")
   return (
     <>
     {featuredata?.length != 0 ?

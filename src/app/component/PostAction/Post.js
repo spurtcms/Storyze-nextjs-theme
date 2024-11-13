@@ -10,11 +10,13 @@ import Header from "../Header";
 import PostSkeleton from "../../utilites/Skeleton/PostSkeleton";
 import { imageUrl } from "@/app/utilites/ImagePath";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 // import { useSearchParams } from "next/navigation";
 
 
 
 const Post = ({ data, listdata, params }) => {
+  console.log(params?.slug,"paramsvalue")
   const [search, setSearch] = useState("")
 
   const [listdat, setHeadLis] = useState(listdata)
@@ -23,9 +25,13 @@ const Post = ({ data, listdata, params }) => {
   // const [channelid,setChannelid]=useState(null)
   const [catNo, setCatNo] = useState()
 
-  // const searchParams = useSearchParams()
-  // const catgoId=searchParams.get("catgoId")
-  const catgoId = params.slug
+  const searchParams = useSearchParams()
+  
+  const [channelIdvalue, setChannelIdvalue] = useState(searchParams.get("channelId"))
+
+console.log(channelIdvalue,"catgoIdvalue")
+
+  const catgoId = params.slug[0]
   useEffect(() => {
     setCatNo(catgoId)
   }, [catgoId])
@@ -33,24 +39,38 @@ const Post = ({ data, listdata, params }) => {
 
 
 
-  const handleLoad = ({ src }) => {
-    return src;
-  };
+  // const handleLoad = ({ src }, newChannelIdvalue) => {
+  
+  //   setChannelIdvalue(newChannelIdvalue)
+  //   searchParams.set("channelId", newChannelIdvalue);
+  //    navigate(`/post/${response?.slug}/?channelId=${searchParams.toString()}`)
+  //    return src,newChannelIdvalue
+   
+  // };
 
+  const handleLoad = ({ src }) =>{
+    return src
+  }
 
+console.log(listdat,"listdatplplplp")
 
-  const postdata = listdat?.channelEntriesList?.channelEntriesList?.filter(
-    (response) => response?.channelId == data?.ChannelEntryDetail?.channelId
+  const postdata = listdat?.ChannelEntriesList?.channelEntriesList?.filter(
+
+    (response) => {
+      console.log(response,"kiiiii")
+      response?.channelId == data?.ChannelEntryDetail?.channelId
+    }
   );
 
-
+  console.log("FilteredResults", postdata);
 
 
 
   useEffect(() => {
     setCatLoader(false)
   }, [])
-console.log(data,"data")
+console.log(data,"11111111")
+console.log(postdata,"postdataaaaaaaaaaa")
   return (
     <>
       <Header search={search} setSearch={setSearch} triger={triger} setTriger={setTriger} catNo={catNo} />
@@ -95,23 +115,25 @@ console.log(data,"data")
                   {`${data?.ChannelEntryDetail?.authorDetails?.firstName} ${data?.ChannelEntryDetail?.authorDetails?.lastName}`}
                 </h5>
               </div>
+             
               <p className="text-primary text-sm font-normal mb-2 my-3">
-                {data?.ChannelEntryDetail?.categories[0].at(-1).categoryName}
+                {data?.ChannelEntryDetail?.categories[0]?.at(0)?.categoryName}
               </p>
               <div>
                 <h3 className="text-black text-4xl font-bold mb-2">
                   {data?.ChannelEntryDetail?.title}
                 </h3>
 
-
-                <p className="text-gray-500 text-lg font-light mb-3 desc [&_iframe]:aspect-video" dangerouslySetInnerHTML={{ __html: data?.ChannelEntryDetail?.description.replaceAll("<br>", " ") }}></p>
+              
+                <p className="text-gray-500 text-lg font-light mb-3 desc [&_iframe]:aspect-video" dangerouslySetInnerHTML={{ __html: data?.ChannelEntryDetail?.description?.replaceAll("<br>", " ") }}></p>
               </div>
             </div>
             <div className="w-full h-px bg-grey my-6"></div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 mb-12">
+
               {postdata &&
                 postdata.map((result) => (
-                  <>
+                  <>{console.log(result,"result1010")}
                     {result.id !== data?.ChannelEntryDetail?.id ? (
                       <>
                         <div>
@@ -130,10 +152,10 @@ console.log(data,"data")
                             />
                           </Link>
                           <p className="text-primary text-sm font-normal mb-2 my-3">
-                            {result?.categories[0]?.at(-1)?.categoryName}
+                            {result?.categories[0]?.at(0)?.categoryName}
                           </p>
                           <div>
-                            <Link href={`/post/${result?.slug}`}>
+                            <Link href={`/post/${result?.slug}/?channelIdvalue=${response?.channelId}`}>
                               <h3 className="text-black text-2xl font-bold mb-2">
                                 {result?.title}
                               </h3>

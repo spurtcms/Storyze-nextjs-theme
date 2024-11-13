@@ -23,9 +23,10 @@ export async function generateMetadata({ params }) {
   }
 
   const datas = await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_list)
+
   let title = ''
   let description = ''
-  datas?.channelEntriesList?.channelEntriesList.map((response) => {
+  datas?.ChannelEntriesList?.channelEntriesList.map((response) => {
 
     if (response.slug == params.slug) {
       title = response.metaTitle

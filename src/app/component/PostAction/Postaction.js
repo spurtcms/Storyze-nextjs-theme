@@ -7,7 +7,7 @@ import { notFound } from 'next/navigation'
 
 export async function generateMetadata({ params }) {
 
-  let variable_slug = { "limit": 50, "offset": 0, "slug": params.slug }
+  let variable_slug = { "limit": 50, "offset": 0, "slug": params.slug[0] }
 
   const post = await fetchGraphQl(GET_POSTS_SLUG_QUERY, variable_slug)
 
@@ -24,10 +24,10 @@ export async function generateMetadata({ params }) {
 const Postaction = async ({ params }) => {
 
 
-  let { slug } = params
 
 
-  let variable_slug = { "slug": params?.slug, "AdditionalData": { "authorDetails": true, "categories": true } };
+  let variable_slug = { "slug": params?.slug[0], "AdditionalData": { "authorDetails": true, "categories": true } , "channelId": params?.slug[1]};
+ console.log(variable_slug,"variable_slug")
 
   const postes = await fetchGraphQl(GET_POSTS_SLUG_QUERY, variable_slug)
 

@@ -23,7 +23,14 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
   // const [loader, setLoader] = useState(true);
   const [offset, setOffset] = useState(0);
   const [scrollX, setscrollX] = useState(0);
-  // const searchParams = useSearchParams();
+
+  const searchParams = useSearchParams();
+
+  const channelIdvalue = searchParams.get('channelId')
+
+  console.log(channelIdvalue,"channelIdvaluevalue")
+  params.channelId = channelIdvalue
+
   // const catgoId = searchParams.get("catgoId");
   const catgoId = params.slug;
 
@@ -163,15 +170,15 @@ console.log(search,'search')
               )}
             </div>
             
-
+              {console.log(PostListdata,"PostListdatas")}
               {PostListdata?.length != 0 ?
               <>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 mb-12">
                 
               {PostListdata?.slice(0, displayPosts)?.map((response) => (
-                <>
+                <>{console.log(response,"Blogpagedatas")}
                   <div>
-                     <Link href={`/post/${response?.slug}`}>
+                     <Link href={`/post/${response?.slug}/${response?.channelId}`}>
                       <Image
                         loader={handleLoad}
                         src={`${response.coverImage}`}
@@ -186,12 +193,13 @@ console.log(search,'search')
                       />
                     </Link>
                     <p className="text-primary text-sm font-normal mb-2 my-3">
-                      {response?.categories[0]?.at(-1)?.categoryName}
+                      {response?.categories[0]?.at(0)?.categoryName}
                     </p>
                     <div>
-                    <Link href={`/post/${response?.slug}`}>
+                    <Link href={`/post/${response?.slug}/${response?.channelId}`}>
+                   
                         <h3 className="text-black text-2xl font-bold mb-2">
-                          {response.title}
+                          {response?.title}
                         </h3>
                       </Link>
                      <div
