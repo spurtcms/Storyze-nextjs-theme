@@ -173,7 +173,7 @@ const Listpage = ({ listdata }) => {
                          {(datas?.values?.find(value=>{return value?.featuredEntry!==1}))
                          
                          ?
-                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative" style={{ paddingTop: "0px", paddingLeft: "0px" }}>
+                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative" style={{ paddingTop: "0px", paddingLeft: "1.5rem", paddingRight: "1.5rem", paddingBottom: "1rem" }}>
                             <>
                                   {datas.values.filter(d=>d.featuredEntry!=1).map((response, inde) =>
 
@@ -188,7 +188,8 @@ const Listpage = ({ listdata }) => {
                                                       alt="Picture of the author"
                                                       width={500}
                                                       height={500}
-                                                      className={!response?.coverImage ? 'h-channel' : ''}
+                                                      // className={!response?.coverImage ? 'h-channel' : 'h-channel'}
+                                                      className= 'h-channel'
                                                       onError={({ currentTarget }) => {
                                                         currentTarget.onerror = null;
                                                         currentTarget.src = "/img/no-image.png";
