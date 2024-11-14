@@ -4,6 +4,8 @@ import { DarkThemeProvider } from "./utilites/DarkThemeProvider";
 import Header from "./component/Header";
 import NextTopLoader from "nextjs-toploader";
 
+
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -14,8 +16,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+       
+         
       <body className={inter.className}>
       {/* <main className="container min-h-screen mx-auto max-w-screen-lg"> */}
+
+    
       
       <DarkThemeProvider>
       <NextTopLoader
@@ -33,6 +39,9 @@ export default function RootLayout({ children }) {
         zIndex={1600}
         showAtBottom={false}
         />
+               {/* Initialize Tailwind with CDN and plugins */}
+       <script src="https://cdn.tailwindcss.com"></script>
+          <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
       {/* <Header/> */}
           {children}
       </DarkThemeProvider>
