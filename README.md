@@ -1,6 +1,6 @@
 # A CMS-backed blog powered by spurtcms using Next.js 
 
-![Screenshot of spurtCMS using Presentation Tool to do Visual Editing](https://github.com/user-attachments/assets/3cc46220-a378-4643-b82c-c3e5a8206aa5)
+![Screenshot of spurtCMS using Presentation Tool to do Visual Editing](https://dev.spurtcms.com/public/img/blog2.jpg)
 
 
 
