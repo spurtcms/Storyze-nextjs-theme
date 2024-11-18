@@ -9,7 +9,7 @@ import Listpage from '@/app/component/HomePage/Listpage'
 import Navbar from '@/app/component/Navbar'
 
 import { useEffect, useState } from "react";
-import {useSearchParams } from "next/navigation";
+import {useSearchParams, usePathname } from "next/navigation";
 import { fetchGraphQl, fetchGraphQll } from "../../api/graphicql";
 import { GET_POSTS_LIST_QUERY } from '../../api/query'
 import BannerSkeleton from '../../utilites/Skeleton/BannerSkeleton'
@@ -29,6 +29,7 @@ const Listpost = ({headList,postchannel}) => {
     // const catgoId=searchParams.get("catgoId")
 
     const [search,setSearch]=useState("")
+    const popstate = usePathname()
 
     const [listdata,setHeadList]=useState(headList)
     const [triger,setTriger]=useState(0)
@@ -84,6 +85,20 @@ const Listpost = ({headList,postchannel}) => {
     useEffect(() => {
       window.addEventListener("scroll", handleScroll);
     }, []);
+
+    useEffect(()=>{
+      console.log(searchParams, popstate, "pathnamevalue")
+      window.addEventListener('popstate', (e) =>{
+        if(e){
+          if(popstate === '/'){
+            window.location.reload()
+          }
+        }
+      })
+      // console.log(e,"user clicked back button")
+    },[popstate])
+
+    
   return (
    <>
            <Header search={search} setSearch={setSearch} triger={triger}setTriger={setTriger} />

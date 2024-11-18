@@ -47,7 +47,7 @@ console.log(listdata,"listdata")
                       <p
                         className="text-gray-500 text-lg font-light line-clamp-2 mb-3 desc"
                         dangerouslySetInnerHTML={{
-                          __html: response?.description?.replaceAll("<br>"," "),
+                          __html: response?.description?.replaceAll("<br>"," ").replace(/p-\[24px_60px_10px\]/g, "")
                         }}
                       ></p>
                       <div className="flex items-center gap-3">
