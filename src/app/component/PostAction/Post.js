@@ -125,7 +125,7 @@ console.log(postdata,"postdataaaaaaaaaaa")
                 </h3>
 
               
-                <p className="text-gray-500 text-lg font-light mb-3 desc [&_iframe]:aspect-video" dangerouslySetInnerHTML={{ __html: data?.ChannelEntryDetail?.description?.replaceAll("<br>", " ") }}></p>
+                <p className="text-gray-500 text-lg font-light mb-3 desc [&_iframe]:aspect-video" dangerouslySetInnerHTML={{ __html: data?.ChannelEntryDetail?.description?.replaceAll("<br>", " ").replace(/p-\[24px_60px_10px\]/g, "") }}></p>
               </div>
             </div>
             <div className="w-full h-px bg-grey my-6"></div>

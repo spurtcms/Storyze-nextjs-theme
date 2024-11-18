@@ -110,7 +110,7 @@ const Listpage = ({ listdata }) => {
                             <p
                               className="text-gray-500 text-lg font-light line-clamp-3 mb-3 desc"
                               dangerouslySetInnerHTML={{
-                                __html: datas?.entrydata?.description?.replaceAll("<br>"," "),}}
+                                __html: datas?.entrydata?.description?.replaceAll("<br>"," ").replace(/p-\[24px_60px_10px\]/g, "")}}
                             ></p>
                             <div className="flex items-center gap-3">
                               {datas?.entrydata && (
@@ -214,7 +214,7 @@ const Listpage = ({ listdata }) => {
                                                       className="text-gray-500 text-lg font-light line-clamp-3 mb-3 desc"
                                                       dangerouslySetInnerHTML={{
                                                         __html:
-                                                          response?.description?.replaceAll("<br>"," "),
+                                                          response?.description?.replaceAll("<br>"," ").replace(/p-\[24px_60px_10px\]/g, "")
                                                       }}
                                                     ></p>
                                                     <div className="flex items-center gap-3">
@@ -315,7 +315,7 @@ const Listpage = ({ listdata }) => {
                                 <p
                                   className="text-gray-500 text-lg font-light line-clamp-3 mb-3 desc"
                                   dangerouslySetInnerHTML={{
-                                    __html: datas.entrydata.description.replaceAll("<br>"," "),
+                                    __html: datas.entrydata.description.replaceAll("<br>"," ").replace(/p-\[24px_60px_10px\]/g, "")
                                   }}
                                 ></p>
                                 <div className="flex items-center gap-3">
