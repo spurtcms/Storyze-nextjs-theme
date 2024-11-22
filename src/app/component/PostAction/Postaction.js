@@ -27,10 +27,8 @@ const Postaction = async ({ params }) => {
 
 
   let variable_slug = { "slug": params?.slug[0], "AdditionalData": { "authorDetails": true, "categories": true } , "channelId": params?.slug[1]};
- console.log(variable_slug,"variable_slug")
 
   const postes = await fetchGraphQl(GET_POSTS_SLUG_QUERY, variable_slug)
-console.log(postes,'sdadasdasdas')
   if (!postes) {
     return notFound();
   }

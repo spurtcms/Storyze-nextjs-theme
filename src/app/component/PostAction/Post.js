@@ -16,7 +16,6 @@ import { useSearchParams } from "next/navigation";
 
 
 const Post = ({ data, listdata, params }) => {
-  console.log(data,"paramsvalue")
   const [search, setSearch] = useState("")
 
   const [listdat, setHeadLis] = useState(listdata)
@@ -29,7 +28,6 @@ const Post = ({ data, listdata, params }) => {
   
   const [channelIdvalue, setChannelIdvalue] = useState(searchParams.get("channelId"))
 
-console.log(channelIdvalue,"catgoIdvalue")
 
   const catgoId = params.slug[0]
   useEffect(() => {
@@ -52,25 +50,20 @@ console.log(channelIdvalue,"catgoIdvalue")
     return src
   }
 
-console.log(listdat,"listdatplplplp")
 
   const postdata = listdat?.ChannelEntriesList?.channelEntriesList?.filter(
 
     (response) => {
-      console.log(response,"kiiiii")
       response?.channelId == data?.ChannelEntryDetail?.channelId
     }
   );
 
-  console.log("FilteredResults", postdata);
 
 
 
   useEffect(() => {
     setCatLoader(false)
   }, [])
-console.log(data,"11111111")
-console.log(postdata,"postdataaaaaaaaaaa")
   return (
     <>
       <Header search={search} setSearch={setSearch} triger={triger} setTriger={setTriger} catNo={catNo} />
@@ -133,7 +126,7 @@ console.log(postdata,"postdataaaaaaaaaaa")
 
               {postdata &&
                 postdata.map((result) => (
-                  <>{console.log(result,"result1010")}
+                  <>
                     {result.id !== data?.ChannelEntryDetail?.id ? (
                       <>
                         <div>

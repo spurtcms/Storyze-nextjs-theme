@@ -12,14 +12,13 @@ const Searchpage = ({listdata}) => {
      
      return src
     }
-console.log(listdata,"listdata")
   return (
     <>
      <div className="max-w-screen-2xl m-auto px-10 sm:px-20 py-4">
           {listdata?.ChannelEntriesList?.channelEntriesList?.length > 0?
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 mb-12">
               {listdata?.ChannelEntriesList?.channelEntriesList.map((response) => (
-                <>{console.log(response,"responsellll")}
+                <>
                   <div>
                     <Link href={`/post/${response?.slug}?catgoId=${response?.slug}`}>
                       <Image

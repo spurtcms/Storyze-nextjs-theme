@@ -10,7 +10,6 @@ import NodataImg from "../NodataImg";
 
 const Listpage = ({ listdata }) => {
 
-  console.log(listdata,"ChannelEntriesListdaata")
   const groupData = listdata?.ChannelEntriesList?.channelEntriesList.reduce(
     (acc, items) => {
       if (!acc[items.channelId]) {
@@ -23,7 +22,6 @@ const Listpage = ({ listdata }) => {
     {}
   );
 
-  console.log(groupData,"groupData")
   let initialdata = [];
   for (const key in groupData) {
     initialdata.push({ detail: key, values: groupData[key] });
@@ -54,7 +52,6 @@ const Listpage = ({ listdata }) => {
     return src;
   };
 
-  console.log(featuredata,"featuredata")
   return (
     <>
     {featuredata?.length != 0 ?
@@ -62,10 +59,10 @@ const Listpage = ({ listdata }) => {
       <div className="min-h-screen max-w-screen-2xl m-auto px-10 sm:px-20 py-4">
         {featuredata &&
           featuredata.map((result) => (
-            <>{console.log(result,"resulttttt")}
+            <>
               {result&&result?.map((datas, index) => (
              
-                <>{console.log(datas,"datasbjbjbjbj")}
+                <>
                   {index==0 ?(
                     <>
                       <div>
@@ -177,7 +174,7 @@ const Listpage = ({ listdata }) => {
                             <>
                                   {datas.values.filter(d=>d.featuredEntry!=1).map((response, inde) =>
 
-                                        <>{console.log(response,"response6789")}
+                                        <>
                                           {inde <= 3 && (
                                               <>
                                                 <div>

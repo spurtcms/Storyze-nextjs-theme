@@ -57,7 +57,7 @@ const Postlistaction = async ({ params }) => {
 
   let variable_slug = {
     "commonFilter": {
-      "limit": 10,
+      "limit": 0,
       "offset": 0,
       "keyword":""
     },

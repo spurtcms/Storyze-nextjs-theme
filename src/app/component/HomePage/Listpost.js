@@ -87,7 +87,6 @@ const Listpost = ({headList,postchannel}) => {
     }, []);
 
     useEffect(()=>{
-      console.log(searchParams, popstate, "pathnamevalue")
       window.addEventListener('popstate', (e) =>{
         if(e){
           if(popstate === '/'){
@@ -95,7 +94,6 @@ const Listpost = ({headList,postchannel}) => {
           }
         }
       })
-      // console.log(e,"user clicked back button")
     },[popstate])
 
     

@@ -26,15 +26,12 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
 
   const searchParams = useSearchParams();
 
-  console.log(searchParams,"searchParamslplpp")
-
+console.log(data, postdatalist, "32472389479239423 ");
   const channelIdvalue = searchParams.get('channelId')
 
-  console.log(channelIdvalue,"channelIdvaluevalue")
 
   params.channelId = channelIdvalue
 
-  console.log(params.channelId,"paramsloloolo")
 
   // const catgoId = searchParams.get("catgoId");
   const catgoId = params.slug;
@@ -112,9 +109,7 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
   //     setCatLoader(false);
   //   }
   // }, []);
-console.log(search,'search')
-  console.log(postchannel,"PostListdata")
-  console.log(data,"data678")
+
   return (
     <>
       <Header
@@ -175,23 +170,23 @@ console.log(search,'search')
               )}
             </div>
             
-              {console.log(PostListdata,"PostListdatas")}
               {PostListdata?.length != 0 ?
               <>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 mb-12">
                 
               {PostListdata?.slice(0, displayPosts)?.map((response) => (
-                <>{console.log(response,"Blogpagedatas")}
+                <>
                   <div>
                      <Link href={`/post/${response?.slug}/${response?.channelId}`}>
                       <Image
                         loader={handleLoad}
-                        src={`${response.coverImage}`}
+                        src={response?.coverImage}
                         alt="Picture of the author"
                         width={500}
                         height={500}
                         className="w-full h-channel"
                         onError={({ currentTarget }) => {
+                          console.log(currentTarget.onerror,"object");
                           currentTarget.onerror = null;
                           currentTarget.src = "/img/no-image.png";
                       }}
