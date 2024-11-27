@@ -203,9 +203,9 @@ console.log(data, postdatalist, "32472389479239423 ");
                         </h3>
                       </Link>
                      <div
-                        className="text-gray-500 text-lg font-light line-clamp-2 mb-3 desc"
+                        className="text-gray-500 text-lg font-light line-clamp-2 mb-3 desc h-[131px] overflow-hidden"
                         dangerouslySetInnerHTML={{
-                          __html: response?.description.replaceAll("<br>"," ").replace(/p-\[24px_60px_10px\]/g, "")
+                          __html: response?.description?.replaceAll("<br>"," ").replaceAll(/<div class="card[^"]*"(.*?)<\/div>/g, '').replaceAll(/<img[^>]*>/g, "").replace(/p-\[24px_60px_10px\]/g, "")
                         }}
                       />
                       <div className="flex items-center gap-3">

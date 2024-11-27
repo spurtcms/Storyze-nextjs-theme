@@ -105,9 +105,9 @@ const Listpage = ({ listdata }) => {
                               </Link>
                             </h3>
                             <p
-                              className="text-gray-500 text-lg font-light line-clamp-3 mb-3 desc"
+                              className="text-gray-500 text-lg font-light line-clamp-3 mb-3 desc h-[131px] overflow-hidden"
                               dangerouslySetInnerHTML={{
-                                __html: datas?.entrydata?.description?.replaceAll("<br>"," ").replace(/p-\[24px_60px_10px\]/g, "")}}
+                                __html: datas?.entrydata?.ddescription?.replaceAll("<br>"," ").replaceAll(/<div class="card[^"]*"(.*?)<\/div>/g, '').replaceAll(/<img[^>]*>/g, "").replace(/p-\[24px_60px_10px\]/g, "")}}
                             ></p>
                             <div className="flex items-center gap-3">
                               {datas?.entrydata && (
@@ -208,10 +208,10 @@ const Listpage = ({ listdata }) => {
                                                       </Link>
                                                     </h3>
                                                     <p
-                                                      className="text-gray-500 text-lg font-light line-clamp-3 mb-3 desc"
+                                                      className="text-gray-500 text-lg font-light line-clamp-3 mb-3 desc h-[131px] overflow-hidden"
                                                       dangerouslySetInnerHTML={{
                                                         __html:
-                                                          response?.description?.replaceAll("<br>"," ").replace(/p-\[24px_60px_10px\]/g, "")
+                                                          response?.description?.replaceAll("<br>"," ").replaceAll(/<div class="card[^"]*"(.*?)<\/div>/g, '').replaceAll(/<img[^>]*>/g, "").replace(/p-\[24px_60px_10px\]/g, "")
                                                       }}
                                                     ></p>
                                                     <div className="flex items-center gap-3">
@@ -310,9 +310,9 @@ const Listpage = ({ listdata }) => {
                                   </Link>
                                 </h3>
                                 <p
-                                  className="text-gray-500 text-lg font-light line-clamp-3 mb-3 desc"
+                                  className="text-gray-500 text-lg font-light line-clamp-3 mb-3 desc h-[131px] overflow-hidden"
                                   dangerouslySetInnerHTML={{
-                                    __html: datas.entrydata.description.replaceAll("<br>"," ").replace(/p-\[24px_60px_10px\]/g, "")
+                                    __html: datas.entrydata.description?.replaceAll("<br>"," ").replaceAll(/<div class="card[^"]*"(.*?)<\/div>/g, '').replaceAll(/<img[^>]*>/g, "").replace(/p-\[24px_60px_10px\]/g, "")
                                   }}
                                 ></p>
                                 <div className="flex items-center gap-3">
