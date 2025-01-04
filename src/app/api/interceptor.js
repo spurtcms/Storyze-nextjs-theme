@@ -1,9 +1,8 @@
 export const apiinstance = async (url, options) => {
   const headers = {
     'Content-Type': 'application/json',
-    // "Authorization": process.env.NEXT_PUBLIC_SPURTCMS_NEXTJS_STARTER_THEME_TOKEN,
-    // "ApiKey": process.env.NEXT_PUBLIC_SPURTCMS_NEXTJS_STARTER_APIKEY
-    "ApiKey": process.env.next_public_spurtcms_nextjs_starter_apikey
+    "Authorization": process.env.NEXT_PUBLIC_SPURTCMS_NEXTJS_STARTER_THEME_TOKEN,
+    "ApiKey": process.env.NEXT_PUBLIC_SPURTCMS_NEXTJS_STARTER_APIKEY
   }
 
   const config = {
@@ -19,12 +18,11 @@ export const apiinstance = async (url, options) => {
   }
 
 
-
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SPURTCMS_NEXTJS_STARTER_THEME_BASEURL}${url}`, config);
-  if (res.ok) {
-    return await res.json();
-  } else {
-
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SPURTCMS_NEXTJS_STARTER_THEME_BASEURL}${url}`, config);
+    const data = await res.json()
+    return data
+  } catch (error) {
+    console.log(error)
   }
-
 }
