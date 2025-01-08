@@ -26,7 +26,6 @@ const Postchannel = ({ data, postdatalist, postchannel,params}) => {
 
   const searchParams = useSearchParams();
 
-console.log(data, postdatalist, "32472389479239423 ");
   const channelIdvalue = searchParams.get('channelId')
 
 
@@ -186,7 +185,6 @@ console.log(data, postdatalist, "32472389479239423 ");
                         height={500}
                         className="w-full h-channel"
                         onError={({ currentTarget }) => {
-                          console.log(currentTarget.onerror,"object");
                           currentTarget.onerror = null;
                           currentTarget.src = "/img/no-image.png";
                       }}
