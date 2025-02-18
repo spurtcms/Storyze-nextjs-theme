@@ -1,10 +1,10 @@
-# A CMS-backed blog powered by spurtcms using Next.js 
+# Storyz Template 
 
-![Screenshot of spurtCMS using Presentation Tool to do Visual Editing](https://dev.spurtcms.com/public/img/blog2.jpg)
+The Storyz Template is a sleek and engaging design for creating and showcasing visual storytelling content.
 
+![Screenshot of spurtCMS using Presentation Tool to do Visual Editing](https://dev.spurtcms.com/image-resize?name=media/blog2.png)
 
-
-This blog is a statically generated blog that uses Next.js App Router for the frontend and [spurtcms](https://dev.spurtcms.com) to handle its content. It comes with a native spurtcms that offers features like real-time collaboration and visual editing with live updates.Check out the [project documentaion](https://dev.spurtcms.com/documentation) for more details.
+The Storyz Template is a visually stunning and interactive layout designed for showcasing stories, portfolios, or creative projects. It offers a responsive, user-friendly design with smooth transitions and customizable sections to present your content in a dynamic and engaging way. Ideal for creators looking to highlight their work in an immersive storytelling format.
 
 The Studio connects to spurtcms, which gives you hosted content APIs with a flexible query language, on-demand image transformations, powerful patching, and more. You can use this starter to kick-start a blog or learn these technologies.
 
@@ -88,5 +88,5 @@ npm run prod
 
 
 ## Feedback and Questions
-If you have feedback or questions about this starter, please use the Github Issues on this repo, [(https://github.com/spurtcms/nextjs-blog2-theme/issues)]
+If you have feedback or questions about this starter, please use the Github Issues on this repo, [(https://github.com/spurtcms/Storyze-nextjs-theme/issues)]
 or Send Email to us [(support@spurtcms.com)]
