@@ -6,7 +6,7 @@ The Storyz Template is a sleek and engaging design for creating and showcasing v
 
 The Storyz Template is a visually stunning and interactive layout designed for showcasing stories, portfolios, or creative projects. It offers a responsive, user-friendly design with smooth transitions and customizable sections to present your content in a dynamic and engaging way. Ideal for creators looking to highlight their work in an immersive storytelling format.
 
-The Studio connects to spurtcms, which gives you hosted content APIs with a flexible query language, on-demand image transformations, powerful patching, and more. You can use this starter to kick-start a blog or learn these technologies.
+The Studio connects to  [spurtcms](https://spurtcms.com), which gives you hosted content APIs with a flexible query language, on-demand image transformations, powerful patching, and more. You can use this starter to kick-start a blog or learn these technologies.
 
 ## Features
 
