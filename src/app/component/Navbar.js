@@ -5,17 +5,21 @@ import Image from "next/image";
 
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { fetchGraphQl } from "../api/graphicql";
+import { GET_POSTS_CHANNELLIST_QUERY } from "../api/query";
+import BannerSkeleton from "../utilites/Skeleton/BannerSkeleton";
 
-function Navbar({categories,catNo,setCatNo,postes,setPostes ,setOffset , scrollX ,setscrollX }){
+function Navbar({categories,catNo,setCatNo,setOffset,postes, scrollX ,setscrollX }){
+  console.log(setCatNo, 'zxsazx');
+  const [postchannel, setPostchannel] = useState(postes);
+  const[loader, setLoader] = useState(false);
 
     const router = useRouter();
     const searchParams = useSearchParams();
-
   
     let scrl = useRef(null);
     const [scrolEnd, setscrolEnd] = useState(true);
     let scroll = searchParams.get("scroll");
-  
   
   
   
@@ -65,18 +69,28 @@ function Navbar({categories,catNo,setCatNo,postes,setPostes ,setOffset , scrollX
     }, [scrl]);
     const handleActive = (data) => {
       setCatNo(data?.slugName);
+      console.log(data?.slugName, 'axzsdvmmk');
+      console.log(data?.slugName, 'slug');
       if (data?.slugName == null) {
         router.push(`/`);
-        
-      } else {
+      } 
+      // console.log(catNo, 'asqasq');
+      // else {
        
-        // router.push(`/postlist/${id}/?catgoId=${id}`)
-        router.push(`/postlist/${data?.slugName}`)
+      //   // router.push(`/postlist/${id}/?catgoId=${id}`)
+      //   router.push(`/postlist/${data?.slugName}`)
         
-      }
+      // }
     };
+    
+  const handleClick = ()=>{
+   setLoader(true);
+  }
+
+
   return (
    <>
+   
    <div className="max-w-screen-2xl m-auto px-10 sm:px-20 py-4">
     <div className="flex flex-nowrap flex-row gap-x-2 pb-4 mb-4 justify-start items-center relative">
           {scrollX !== 0 && (
@@ -94,7 +108,7 @@ function Navbar({categories,catNo,setCatNo,postes,setPostes ,setOffset , scrollX
             </button>
           )}
 
-          {postes?.ChannelList
+          {postchannel?.ChannelList
            ?.channellist && (
             <>
               <ul
@@ -113,9 +127,23 @@ function Navbar({categories,catNo,setCatNo,postes,setPostes ,setOffset , scrollX
                   {" "}
                   All
                 </li>
-                {postes?.ChannelList?.channellist?.map((data, index) => (
+              {postchannel?.ChannelList?.channellist?.map((data, slname) => (
                   <>
-                  <li
+                   <div key={slname}>
+                   <Link
+                      href={`/postlist/${data?.slugName}`}          
+                    className={`whitespace-nowrap px-6 py-2 rounded-3xl border font-base  leading-4 hover:text-white hover:bg-gray-500 hover:border-gray-500 cursor-pointer ${
+                        catNo == data.slugName
+                          ? "border-cyan-500 text-primary"
+                          : "border-gray-200 text-gray-600"
+                      }`}
+                      onClick={handleClick}
+                   >
+                    {data.channelName}
+                  </Link>
+                   </div>
+
+                  {/* <li
                     key={index}
                     onClick={() => handleActive(data)}
                     className={`whitespace-nowrap px-6 py-2 rounded-3xl border font-base  leading-4 hover:text-white hover:bg-gray-500 hover:border-gray-500 cursor-pointer ${
@@ -123,15 +151,20 @@ function Navbar({categories,catNo,setCatNo,postes,setPostes ,setOffset , scrollX
                         ? "border-cyan-500 text-primary"
                         : "border-gray-200 text-gray-600"
                     }`}
+                    
                   >
                     {" "}
                     {data.channelName}{" "}
-                  </li>
+                    {console.log(data.channelName, 'channel')}
+                  </li> */}
+                  
                   </>
                 ))}
+                
               </ul>
             </>
           )}
+
 
           {!scrolEnd && (
             <button

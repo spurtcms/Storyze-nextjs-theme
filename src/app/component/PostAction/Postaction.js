@@ -50,6 +50,7 @@ const Postaction = async ({ params }) => {
     }
   }
   const Listdata = await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_list)
+  console.log(Listdata, 'alks');
 
   return (
     <>

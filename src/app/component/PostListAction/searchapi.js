@@ -20,8 +20,9 @@ export const searchapi = async (search, setHeadLis, setCatLoader ) =>{
       
   
      let entries=await fetchGraphQl(GET_POSTS_LIST_QUERY,variable_list);
-  
+       console.log(entries, 'searchen');
       setHeadLis(entries)
+
       if(entries){
         setCatLoader(false)
       }

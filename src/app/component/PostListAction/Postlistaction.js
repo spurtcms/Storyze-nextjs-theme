@@ -47,9 +47,13 @@ const Postlistaction = async ({ params }) => {
   let variable_category = { "limit": 50, "offset": 0, "hierarchylevel": 0 }
   const postchannel = await fetchGraphQl(GET_POSTS_CHANNELLIST_QUERY, variable_category)
 
+  console.log(postchannel, 'iiiii');
+
   let variable_list = { "slug": slug,"active":true };
 
   const postdata = await fetchGraphQl(GET_POSTS_CHANNELLIST_SLUG_QUERY, variable_list)
+   
+  console.log(postdata, 'postdata');
 
 
   // let variable_slug = { "limit": 50, "offset": 0, requireData: { authorDetails: true, categories: true } }
@@ -71,9 +75,7 @@ const Postlistaction = async ({ params }) => {
   }
 
   const postdatalist = await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_slug)
-
-
-
+  console.log(postdatalist, 'postdatalist');
 
   if (!postdata) {
     return notFound();
@@ -81,8 +83,71 @@ const Postlistaction = async ({ params }) => {
   return (
     <>
       <Postchannel data={postdata} postdatalist={postdatalist} postchannel={postchannel} params={params} />
+      
     </>
   )
 }
 
-export default Postlistaction
+export default Postlistaction;
+
+
+
+
+
+
+
+
+// import { fetchGraphQl } from '@/app/api/graphicql';
+// import { GET_POSTS_CHANNELLIST_QUERY, GET_POSTS_CHANNELLIST_SLUG_QUERY, GET_POSTS_LIST_QUERY } from '@/app/api/query';
+// import React from 'react'
+// import Postchannel from './Postchannel';
+// import { notFound } from 'next/navigation';
+
+// export async function generateMetadata({ params }) {
+
+//   // let variable_list = { limit: 20, offset: 0 };
+//   let variable_list = {
+//     "commonFilter": {
+//       "limit": 10,
+//       "offset": 0,
+//       "keyword":""
+//     },
+//     "entryFilter": {
+//       "Status": "Publish"
+//     },
+//     "AdditionalData": {
+//       "categories": true,
+//       "authorDetails":true
+//     }
+//   }
+
+//   const datas = await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_list)
+
+//   let title = ''
+//   let description = ''
+//   datas?.ChannelEntriesList?.channelEntriesList.map((response) => {
+
+//     if (response.slug == params.slug) {
+//       title = response.metaTitle
+//       description = response.metaDescription
+//     }
+//   })
+//   return {
+//     title,
+//     description,
+//   };
+
+// }
+
+// const Postlistaction =({ params }) => {
+  
+
+//   return (
+//     <>
+//       {/* <Postchannel data={postdata} postdatalist={postdatalist} postchannel={postchannel} params={params} /> */}
+//       <Postchannel params={params}/>
+//     </>
+//   )
+// }
+
+// export default Postlistaction;
