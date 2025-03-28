@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 function ChannelSkeleton() {
   return (
@@ -41,8 +41,8 @@ function ChannelSkeleton() {
         {/* sdfs */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 mb-12">
           {[1, 2, 3, 4, 5, 6, 7, 8].map((data, index) => (
-            <>
-              <div key={index}
+            <Fragment key={index}>
+              <div
                 role="status"
                 className="max-w-sm p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700"
               >
@@ -79,7 +79,7 @@ function ChannelSkeleton() {
                 </div>
                 <span className="sr-only">Loading...</span>
               </div>
-            </>
+            </Fragment>
           ))}
         </div>
       </div>

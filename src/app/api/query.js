@@ -369,3 +369,35 @@ export const GET_POSTS_QUERY_CATEGORY = `query($hierarchylevel: Int!){
     }
   }
   `;
+
+  export const GET_REGISTER_QUERY =`mutation
+  memberRegister(
+$input: MemberDetails!
+$arguments: MemberArguments
+  ){
+    memberRegister(input:$input,
+    arguments:$arguments)
+  }`
+
+  export const GET_SIGNIN_QUERY = `mutation
+  memberCheckLogin($input: MemberSignin!){
+    memberCheckLogin(input:$input){
+      email
+      password
+      message
+      token
+      success
+    }
+  }`
+
+  export const GET_HEADER_FORGOT_PASSWORD_QUERY =`mutation 
+forgotPassword($input: MemberInfo!){
+  forgotPassword(input:$input){
+    message
+  }
+}`
+
+export const GET_RESET_NEW_PASSWORD=`mutation 
+resetPassword($input: MemberResetpassInfo!){
+  resetPassword(input:$input)
+}`

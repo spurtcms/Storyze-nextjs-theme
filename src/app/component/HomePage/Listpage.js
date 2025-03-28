@@ -9,7 +9,7 @@ import NodataImg from "../NodataImg";
 import DOMPurify from 'dompurify';
 
 
-const Listpage = ({ listdata }) => {
+const Listpage = ({ listdata, }) => {
 console.log(listdata,"entrylistdata")
   const groupData = listdata?.ChannelEntriesList?.channelEntriesList.reduce(
     (acc, items) => {
@@ -77,6 +77,8 @@ console.log(listdata,"entrylistdata")
             .concat("...") // Add ellipsis if text is truncated
 };
 
+console.log(featuredata,'featuredata')
+
   return (
     <>
     
@@ -88,8 +90,8 @@ console.log(listdata,"entrylistdata")
             <Fragment key={val}>
               {result&&result?.map((datas, index) => (
              
-                <>
-{                console.log(datas,"resultDtat")}     
+                <Fragment key={index}>
+              {console.log(datas,"resultDtat")}     
              {index==0 ?(
                     <>
                       <div>
@@ -116,9 +118,9 @@ console.log(listdata,"entrylistdata")
                               <Image
                               src={datas?.entrydata?.coverImage || "/img/no-image.png"}
                               alt={datas?.entrydata?.coverImage ? "Cover image of the author" : "No image available"}
-                              width={500}
-                              height={500}
-                              className="w-full h-banner"
+                              width={900}
+                              height={1200}
+                              className="w-full"
                               unoptimized
                               priority // Add this line to indicate that this image is important for LCP
                               onError={({ currentTarget }) => {
@@ -136,7 +138,7 @@ console.log(listdata,"entrylistdata")
                             }
                           </p>
                           < div>
-                            <h3 className="text-black text-3xl line-clamp-1 overflow-hidden font-bold mb-2">
+                            <h3 className="text-black text-3xl line-clamp-2 overflow-hidden font-bold mb-5">
                               {" "}
                               <Link href={`/post/${datas?.entrydata?.slug}/${datas?.entrydata?.channelId}`}>
                                 {" "}
@@ -148,7 +150,7 @@ console.log(listdata,"entrylistdata")
                               dangerouslySetInnerHTML={{
                                 __html: datas?.entrydata?.description?.replaceAll("<br>"," ").replaceAll(/<div class="card[^"]*"(.*?)<\/div>/g, '').replaceAll(/<img[^>]*>/g, "").replace(/p-\[24px_60px_10px\]/g, "")}}
                             ></p> */}
-                             <div className="text-gray-500 text-lg font-light line-clamp-2 mb-3 desc overflow-hidden"
+                             <div className="text-gray-500 dark:text-white text-lg font-light   mb-5 desc "
                                 dangerouslySetInnerHTML={{
                                     __html: sanitizeHTML(datas?.entrydata?.description)
                                 }}
@@ -157,8 +159,8 @@ console.log(listdata,"entrylistdata")
                             <div className="flex items-center gap-3 mt-10">
                               {datas?.entrydata && (
                                 <>
-                                  <div className="flex items-center gap-2">
-                                    <div class="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
+                                  <div className="flex items-center gap-2 mt-5">
+                                    <div className="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
                                       {datas?.entrydata?.authorDetails
                                         ?.profileImagePath ? (
                                         <Image
@@ -184,7 +186,7 @@ console.log(listdata,"entrylistdata")
                                       {`${datas?.entrydata?.authorDetails?.firstName} ${datas?.entrydata?.authorDetails?.lastName}`}
                                     </h5>
                                   </div>
-                                  <p className="text-black font-normal text-base">
+                                  <p className="text-black font-normal text-base mt-5">
                                     {moment(datas?.entrydata?.createdOn).format(
                                       "MMM DD, YYYY"
                                     )}
@@ -221,7 +223,7 @@ console.log(listdata,"entrylistdata")
                             <>
                                   {datas.values.filter(d=>d.featuredEntry!=1).map((response, inde) =>
 
-                                        <>
+                                        <Fragment key={inde}>
                                           {inde <= 3 && (
                                               <>
                                                 <div>
@@ -276,15 +278,15 @@ console.log(listdata,"entrylistdata")
                                                           response?.description?.replaceAll("<br>"," ").replaceAll(/<div class="card[^"]*"(.*?)<\/div>/g, '').replaceAll(/<img[^>]*>/g, "").replace(/p-\[24px_60px_10px\]/g, "")
                                                       }}
                                                     ></p> */}
-                                                     <div className="text-gray-500 text-lg font-light line-clamp-3 mb-3 desc  overflow-hidden"
+                                                     <div className="text-gray-500 dark:text-white text-lg font-light line-clamp-3 mb-3 desc  overflow-hidden"
                                          dangerouslySetInnerHTML={{
                                     __html: sanitizeHTML(datas?.entrydata?.description)
                                 }}
                             >
                             </div>
-                                                    <div className="flex items-center gap-3 mt-10">
+                                                    <div className="flex items-center gap-3 mt-5">
                                                       <div className="flex items-center gap-2">
-                                                        <div class="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
+                                                        <div className="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
                                                           {response?.authorDetails?.profileImagePath ? (
                                                               <>
                                                                  <Image
@@ -325,7 +327,7 @@ console.log(listdata,"entrylistdata")
                                                 </div>
                                               </>
                                             )}
-                                        </>
+                                        </Fragment>
                                       
                                   )}
                             </>
@@ -371,9 +373,9 @@ console.log(listdata,"entrylistdata")
                                   <Image
                                               src={datas.entrydata.coverImage || "/img/no-image.png"}
                                               alt={datas.entrydata.coverImage ? "Cover image of the author" : "No image available"}
-                                              width={500}
-                                              height={500}
-                                              className="w-full h-banner"
+                                              width={900}
+                                              height={1100}
+                                              className="w-full"
                                               unoptimized
                                               priority // Add this line to indicate that this image is important for LCP
                                               onError={({ currentTarget }) => {
@@ -382,11 +384,11 @@ console.log(listdata,"entrylistdata")
                                               }}
                                             />
                               </Link>
-                              <p className="text-primary text-sm font-normal mb-2 my-3">
+                              <p className="text-primary text-sm font-normal mb-4 my-3">
                                 {datas.entrydata.categories[0].at(0).categoryName}
                               </p>
                               <div>
-                                <h3 className="text-black line-clamp-1  text-3xl font-bold mb-2">
+                                <h3 className="text-black line-clamp-2  text-3xl font-bold mb-5">
                                 <Link href={`/post/${datas?.entrydata?.slug}/${datas?.entrydata?.channelId}`}>
                                     {datas.entrydata.title}
                                   </Link>
@@ -397,7 +399,7 @@ console.log(listdata,"entrylistdata")
                                     __html: datas.entrydata.description?.replaceAll("<br>"," ").replaceAll(/<div class="card[^"]*"(.*?)<\/div>/g, '').replaceAll(/<img[^>]*>/g, "").replace(/p-\[24px_60px_10px\]/g, "")
                                   }}
                                 ></p> */}
-                            <div className="text-gray-500 text-lg font-light line-clamp-3 mb-3 desc  overflow-hidden"
+                            <div className="text-gray-500 dark:text-white text-lg font-light  mb-5 desc "
                               dangerouslySetInnerHTML={{
                            __html: sanitizeHTML(datas?.entrydata?.description)
                                 }}
@@ -405,7 +407,7 @@ console.log(listdata,"entrylistdata")
                             </div>
                                 <div className="flex items-center gap-3 mt-10">
                                   <div className="flex items-center gap-2">
-                                    <div class="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
+                                    <div className="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
                                       {datas.entrydata.authorDetails
                                         .profileImagePath ? (
                                         <Image
@@ -454,7 +456,7 @@ console.log(listdata,"entrylistdata")
                          <div className="pt-6 lg:pl-6 lg:pt-0 mt-auto flex flex-col grow">
                           {datas.values.filter(d=>d.featuredEntry!=1).map((response, ind) =>
                               ind <= 2 && (
-                                    <>
+                                    <Fragment key={ind}>
                                       <div className="grid grid-cols-1 md:grid-cols-2 pb-3 mb-3 border-b border-grey gap-3 ">
                                         <div>
                                           <p className="text-primary text-sm font-normal mb-2">
@@ -468,7 +470,7 @@ console.log(listdata,"entrylistdata")
                                               {response.title}
                                             </Link>
                                           </h3>
-                                          <div className="text-gray-500 text-lg font-light line-clamp-3 mb-3 desc  overflow-hidden"
+                                          <div className="text-gray-500 dark:text-white  text-lg font-light line-clamp-3 mb-3 desc  overflow-hidden"
                               dangerouslySetInnerHTML={{
                            __html: sanitizeHTML(response?.description)
                                 }}
@@ -476,7 +478,7 @@ console.log(listdata,"entrylistdata")
                             </div>
                                           <div className="flex items-center gap-3 mt-10">
                                             <div className="flex items-center gap-2">
-                                              <div class="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
+                                              <div className="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
                                                 {response.authorDetails
                                                   .profileImagePath ? (
                                                   <Image
@@ -537,7 +539,7 @@ console.log(listdata,"entrylistdata")
 
                                         </Link>
                                       </div>
-                                    </>
+                                    </Fragment>
                               )
                           )}
                         </div>
@@ -554,7 +556,7 @@ console.log(listdata,"entrylistdata")
                       </div>
                     </>
                   )}
-                </>
+                </Fragment>
               ))}
             </Fragment>
           ))}

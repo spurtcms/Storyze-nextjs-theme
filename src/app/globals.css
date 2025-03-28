@@ -43,6 +43,7 @@ body {
   color: #EDEDED;
 }
 
+
 .border-grey {
   border-color: #EDEDED;
 }
@@ -78,7 +79,7 @@ body {
 }
 
 .dark .text-black{
-  color: #FFFFFF;
+  color: #FFFFFF!important;
 }
 
 .dark .bg-grey{
@@ -89,7 +90,7 @@ body {
   border-color: #393939;
 }
 
-.dark  .text-black-600{
+.dark .text-black-600{
   color: #FFFFFF;
 }
 .h-banner{
@@ -123,7 +124,8 @@ body {
 }
 
 .dark .desc p,.dark .desc h1,.dark .desc h2,.dark .desc h3,.dark .desc h5,.dark .desc h6,.dark .desc span{
-  color: rgb(156 163 175) !important;
+  /* color: rgb(156 163 175) !important; */
+  color:#FFFFFF;
   background-color: #121212!important;
 }
 @layer utilities {

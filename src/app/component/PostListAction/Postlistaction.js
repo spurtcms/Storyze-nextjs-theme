@@ -44,6 +44,10 @@ const Postlistaction = async ({ params }) => {
 
   let { slug } = params
 
+  // const dispatch = useDispatch();
+
+  // dispatch(header_slug_Redux_function(slug))
+
   let variable_category = { "limit": 50, "offset": 0, "hierarchylevel": 0 }
   const postchannel = await fetchGraphQl(GET_POSTS_CHANNELLIST_QUERY, variable_category)
 

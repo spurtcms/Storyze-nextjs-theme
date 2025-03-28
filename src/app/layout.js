@@ -3,6 +3,7 @@ import "./globals.css";
 import { DarkThemeProvider } from "./utilites/DarkThemeProvider";
 import Header from "./component/Header";
 import NextTopLoader from "nextjs-toploader";
+import CustomProviders from "@/StoreConfiguration/CustomProviders";
 
 
 
@@ -20,9 +21,8 @@ export default function RootLayout({ children }) {
 
       <body className={inter.className}>
         {/* <main className="container min-h-screen mx-auto max-w-screen-lg"> */}
-
-
-
+        <CustomProviders>
+        <>
         <DarkThemeProvider>
           <NextTopLoader
             color="#2299DD"
@@ -34,17 +34,19 @@ export default function RootLayout({ children }) {
             easing="ease"
             speed={200}
             shadow="0 0 10px #2299DD,0 0 5px #2299DD"
-            template='<div class="bar" role="bar"><div class="peg"></div></div> 
-        <div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
+        //     template='<div className="bar" role="bar"><div className="peg"></div></div> 
+        // <div className="spinner" role="spinner"><div className="spinner-icon"></div></div>'
             zIndex={1600}
             showAtBottom={false}
           />
           {/* Initialize Tailwind with CDN and plugins */}
-          {/* <script src="https://cdn.tailwindcss.com"></script>
-          <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script> */}
-          {/* <Header/> */}
+          <script src="https://cdn.tailwindcss.com"></script>
+          <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
           {children}
         </DarkThemeProvider>
+        </>
+        </CustomProviders>
+        
         {/* </main> */}
       </body>
     </html>

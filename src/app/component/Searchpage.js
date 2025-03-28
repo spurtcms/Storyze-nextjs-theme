@@ -1,7 +1,7 @@
 import moment from 'moment'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { Fragment } from 'react'
 import { imageUrl } from '../utilites/ImagePath'
 import DOMPurify from 'dompurify';
 
@@ -35,7 +35,7 @@ const Searchpage = ({listdata}) => {
           {listdata?.ChannelEntriesList?.channelEntriesList?.length > 0?
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 mb-12">
               {listdata?.ChannelEntriesList?.channelEntriesList.map((response, id) => (
-                <>
+                <Fragment key={id} >
                   <div key={id} >
                     <Link href={`/post/${response?.slug}?catgoId=${response?.slug}`}>
                      {/* <Image
@@ -65,8 +65,8 @@ const Searchpage = ({listdata}) => {
                                 /> 
                     </Link>
                     <p className="text-primary text-sm font-normal mb-2 my-3">
-                      {response?.categories?.[0]?.at(-1)?.categoryName}
-                      {console.log(response?.categories?.[0]?.at(-1)?.categoryName, 'zxcvb')}
+                      {response?.categories?.[0]?.at(0)?.categoryName}
+                      {console.log(response?.categories?.[0]?.at(0)?.categoryName, 'zxcvb')}
                     </p>
                     <div>
                       <Link href={`/post/${response?.slug}?catgoId=${response?.slug}`}>
@@ -80,7 +80,7 @@ const Searchpage = ({listdata}) => {
                           __html: response?.description?.replaceAll("<br>"," ").replace(/p-\[24px_60px_10px\]/g, "")
                         }}
                       ></p> */}
-                       <div className="text-gray-500 text-lg font-light line-clamp-3 mb-3 desc overflow-hidden"
+                       <div className="text-gray-500 dark:text-white text-lg font-light line-clamp-3 mb-3 desc overflow-hidden"
                                 dangerouslySetInnerHTML={{
                                     __html: sanitizeHTML(response?.description)
                                 }}
@@ -88,7 +88,7 @@ const Searchpage = ({listdata}) => {
                             </div>
                       <div className="flex items-center gap-3">
                         <div className="flex items-center gap-2">
-                          <div class="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
+                          <div className="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
                             {response?.authorDetails?.profileImagePath ? (
                               <>
                                 <Image
@@ -119,7 +119,7 @@ const Searchpage = ({listdata}) => {
                       </div>
                     </div>
                   </div>
-                </>
+                </Fragment>
               ))}
             </div>
            :
@@ -132,8 +132,6 @@ const Searchpage = ({listdata}) => {
                                     width={500}
                                     height={100}
                                   />
-                                 
-
                               </div>
                              
                              

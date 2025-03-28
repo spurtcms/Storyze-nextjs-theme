@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React,{useCallback} from 'react'
 import Header from '@/app/component/Header'
 import Listpage from '@/app/component/HomePage/Listpage'
 import Navbar from '@/app/component/Navbar'
@@ -33,47 +33,82 @@ const Listpost = () => {
 
   const [channelid, setChannelid] = useState(null)
 
-  useEffect(()=>{
-    const fetchChannel = async()=>{
-     let variable_category = {
-       "filter": {
-           "limit": 10,
-           "offset": 0
-       }
+
+
+   const fetchChannel = async()=>{
+    let variable_category = {
+      "filter": {
+          "limit": 10,
+          "offset": 0
+      }
+  }
+  const PostChannel = await fetchGraphQl(GET_POSTS_CHANNELLIST_QUERY, variable_category)
+  setPostes(PostChannel);
+  console.log(PostChannel, 'chh');
    }
-   const PostChannel = await fetchGraphQl(GET_POSTS_CHANNELLIST_QUERY, variable_category)
-   setPostes(PostChannel);
-   console.log(PostChannel, 'chh');
-    }
-    fetchChannel()
-   },[])
 
-  useEffect(()=>{
-    const fetchList = async()=>{
-     let variable_list = {
-       "commonFilter": {
-        //  "limit": 10,
-        //  "offset": 0,
-         "keyword":""
-       },
-       "entryFilter": {
-         "Status": "Publish"
-       },
-       "AdditionalData": {
-         "categories": true,
-         "authorDetails":true
-       }
-     }
+
+   const fetchList = async()=>{
+    let variable_list = {
+      "commonFilter": {
+       //  "limit": 10,
+       //  "offset": 0,
+        "keyword":""
+      },
+      "entryFilter": {
+        "Status": "Publish"
+      },
+      "AdditionalData": {
+        "categories": true,
+        "authorDetails":true
+      }
+    }
+  
+  const ListData = await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_list)
+  setCatLoader(false)
+  setHeadList(ListData)
+  setCatLoader(false)
+  console.log(ListData, 'head');
+   }
+
+
+//    const debounce = (func, delay) => {
+//     let timer;
+//     return (...args) => {
+//       clearTimeout(timer);
+//       timer = setTimeout(() => func(...args), delay);
+//     };
+//   };
+
    
-   const ListData = await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_list)
-   setCatLoader(false)
-   setHeadList(ListData)
-   setCatLoader(false)
-   console.log(ListData, 'head');
-    }
-    fetchList()
-  },[])
-
+// const fetchSearchResults = useCallback(
+//   debounce(async(search) => {
+//     let variable_list = {
+//       "commonFilter": {
+//         "limit": 10,
+//         "offset": 0,
+//         "keyword": search
+//       },
+//       "entryFilter": {
+//         "Status": "Publish"
+//       },
+//       "AdditionalData": {
+//         "categories": true,
+//         "authorDetails": true
+//       }
+//     }
+//      try{
+//       let entries = await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_list)
+//       setCatLoader(false)
+//       setHeadList(entries)
+//      console.log(entries, 'entriess');
+//      }
+//      catch (error) {
+//         console.error("Search API error:", error);
+//         }
+//   },1000),
+//   []
+// )
 
   const searchList = async () => {
     if (triger != 0) {
@@ -102,11 +137,22 @@ const Listpost = () => {
     }
   }
   console.log(listdata, 'AAA');
+
+  useEffect(()=>{
+    
+    if(search){
+      // fetchSearchResults(search)
+      searchList()
+    }else{
+      fetchChannel()
+      fetchList()
+    }
+  },[triger,search])
+
+  console.log(triger,'erterterter')
   
 
-  useEffect(() => {
-    searchList()
-  }, [search])
+
 
   // useEffect(() => {
   //   setCatLoader(false)
@@ -153,7 +199,7 @@ const Listpost = () => {
         search == "" ?
           <>
               <Navbar categories={categories} catNo={catNo} setCatNo={setCatNo} postes={postes}  setOffset={setOffset} scrollX={scrollX} setscrollX={setscrollX} />
-              <Listpage listdata={listdata} />
+              <Listpage listdata={listdata}  />
          
           </>
           :

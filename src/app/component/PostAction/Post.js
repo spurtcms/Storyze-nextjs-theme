@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
 
 import moment from "moment";
@@ -10,15 +10,21 @@ import Header from "../Header";
 import PostSkeleton from "../../utilites/Skeleton/PostSkeleton";
 import { imageUrl } from "@/app/utilites/ImagePath";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 // import { useSearchParams } from "next/navigation";
 import DOMPurify from 'dompurify';
+import { GET_POSTS_CHANNELLIST_QUERY } from "@/app/api/query";
+import { fetchGraphQl } from "@/app/api/graphicql";
+import { useSelector } from "react-redux";
+import {header_slug_Redux_function} from "@/StoreConfiguration/slices/customer";
 
 
 
-const Post = ({ data, listdata, params }) => {
+const Post = ({ data, listdata,params }) => {
+  console.log(params, 'params');
+  console.log(data, 'data');
+  console.log(listdata, 'listdata');
   const [search, setSearch] = useState("")
-
   const [listdat, setHeadLis] = useState(listdata)
   const [triger, setTriger] = useState(0)
   const [catLoader, setCatLoader] = useState(true)
@@ -28,14 +34,15 @@ const Post = ({ data, listdata, params }) => {
   const searchParams = useSearchParams()
 
   const [channelIdvalue, setChannelIdvalue] = useState(searchParams.get("channelId"))
-
+   
+  const router = useRouter()
 
   const catgoId = params.slug[0]
   useEffect(() => {
     setCatNo(catgoId)
   }, [catgoId])
 
-
+  let {slug} = params;
 
 
   // const handleLoad = ({ src }, newChannelIdvalue) => {
@@ -69,20 +76,23 @@ const Post = ({ data, listdata, params }) => {
     return sanitized
         .replace(/<br\s*\/?>/g, " ") // Replace <br> tags with spaces
             .replace(/<div className="card[^"]*"(.*?)<\/div>/g, '') // Remove specific <div> tags
-            .replace(/<img[^>]*>/g, "") // Remove all <img> tags
+            // .replace(/<img[^>]*>/g, "") // Remove all <img> tags
             .replace(/<h1[^>]*>.*?<\/h1>/, "") // Remove the first <h1> tag and its content
             .replace(/p-\[24px_60px_10px\]/g, "") // Remove specific styles
             .replace(/<\/?[^>]+(>|$)/g, "") // Remove all remaining HTML tags
             .split(/\s+/) // Split text into words
-            .slice(0, 32) // Limit to the first 35 words
+            // .slice(0, 32) // Limit to the first 35 words
             .join(" ") // Join the words back into a string
-            .concat("...") // Add ellipsis if text is truncated
+            // .concat("...") // Add ellipsis if text is truncated
 };
 
 
   useEffect(() => {
     setCatLoader(false)
   }, [])
+const header_slug = useSelector((s) => s.customerRedux.header_slug_Redux_function)
+  console.log(header_slug, "headerSlug")
+
   return (
     <>
       <Header search={search} setSearch={setSearch} triger={triger} setTriger={setTriger} catNo={catNo} />
@@ -121,7 +131,7 @@ const Post = ({ data, listdata, params }) => {
             <div className="max-w-full lg:max-w-4xl m-auto">
               <div className="w-full h-px bg-grey mt-2 mb-4"></div>
               <div className="flex items-center gap-2 mb-4">
-                <div class="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
+                <div className="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
                   {data?.ChannelEntryDetail?.authorDetails?.profileImagePath ?
                     <Image
                      loader={handleLoad}
@@ -149,17 +159,23 @@ const Post = ({ data, listdata, params }) => {
                 <h3 className="text-black text-4xl font-bold mb-2">
                   {data?.ChannelEntryDetail?.title}
                 </h3>
-
-
-                <p className="text-gray-500 text-lg font-light mb-3 desc [&_iframe]:aspect-video" dangerouslySetInnerHTML={{ __html: data?.ChannelEntryDetail?.description?.replaceAll("<br>", " ").replace(/p-\[24px_60px_10px\]/g, "") }}></p>
+                   
+                <div className="text-black dark:text-white text-lg font-light mb-3 "
+                                dangerouslySetInnerHTML={{
+                                    __html: sanitizeHTML(data?.ChannelEntryDetail?.description)
+                                }}
+                            >
+                            </div> 
+                  
+                {/* <p className="text-black dark:text-white  text-lg font-light mb-3 " dangerouslySetInnerHTML={{ __html: data?.ChannelEntryDetail?.description?.replaceAll("<br>", " ").replace(/p-\[24px_60px_10px\]/g, "") }}></p> */}
+                
               </div>
             </div>
             <div className="w-full h-px bg-grey my-6"></div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 mb-12">
-
               {postdata &&
-                postdata.map((result) => (
-                  <>
+                postdata.map((result,ind) => (
+                  <Fragment key={ind}>
                     {result.id !== data?.ChannelEntryDetail?.id ? (
                       <>
                         <div>
@@ -199,22 +215,22 @@ const Post = ({ data, listdata, params }) => {
                                 {result?.title}
                               </h3>
                             </Link>
-                           {/* <p
-                              className="text-gray-500 text-lg font-light line-clamp-2 mb-3 desc"
+                           <p
+                              className="text-gray-500 dark:text-white  text-lg font-light mb-3 desc"
                               dangerouslySetInnerHTML={{
                                 __html: result?.description?.replaceAll("<br>", " ").replace(/p-\[24px_60px_10px\]/g, "")
                               }}
-                            ></p> */}
+                            ></p>
 
-                      <div className="text-gray-500 text-lg font-light line-clamp-3 mb-3 desc overflow-hidden"
+                      {/* <div className="text-black text-lg font-light  mb-3 desc "
                                 dangerouslySetInnerHTML={{
                                     __html: sanitizeHTML(result?.description)
                                 }}
                             >
-                            </div>                  
+                            </div>                   */}
                             <div className="flex items-center gap-3">
                               <div className="flex items-center gap-2">
-                                <div class="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
+                                <div className="flex items-center justify-center relative h-8 w-8 overflow-hidden rounded-full bg-slate-300">
                                   {result?.authorDetails?.profileImagePath ?
                                     <Image
                                       loader={handleLoad}
@@ -245,13 +261,24 @@ const Post = ({ data, listdata, params }) => {
                     ) : (
                       ""
                     )}
-                  </>
+                  </Fragment>
                 ))}
+                
             </div>
-          </div>
-      
-        </>}
 
+            <Link
+             href={`/postlist/${header_slug}`}
+            className="py-2.5 px-5 me-2 mb-2 text-md font-medium text-black focus:outline-none bg-white rounded-full border border-black hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Back</Link>
+        
+            {/* {postes?.ChannelList?.channellist?.map((data, slname) => (
+                              <Fragment key={slname}>
+            <Link
+             href={`/postlist/${data?.slugName}`}
+             className="py-2.5 px-5 me-2 mb-2 text-md font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-black hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Back</Link>
+            </Fragment>
+            ))} */}
+          </div>
+        </>}
     </>
   );
 };
