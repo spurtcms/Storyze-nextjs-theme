@@ -28,8 +28,8 @@ const Signup = () => {
     const [signupUserId, setSignupUserId] = useState("");
     const [hidePassword, setHidePassword] = useState(false);
 
-     const [loginResponse, setLoginResponse] = useState(false);
-    
+    const [loginResponse, setLoginResponse] = useState(false);
+
     const router = useRouter();
 
     const signupRegex = {
@@ -81,7 +81,7 @@ const Signup = () => {
         let isValid = true;
 
         if (signup_Name !== '') {
-           
+
             if (!signupRegex.name.test(signup_Name)) {
                 setNameError("Name must be at least 3 characters long");
                 setNameStateError(true);
@@ -150,10 +150,10 @@ const Signup = () => {
                     // console.log(" response" ,  register_list)
                     console.log(response?.memberRegister, "response")
                     setLoginResponse(response)
-                    if(response?.memberRegister){
-                        router.push("/auth/signin")
+                    if (response?.memberRegister) {
+                        router.push("/")
                     }
-                    else{
+                    else {
                         setEmailError("Email already exists"), setEmailStateError(true);
                     }
                     // loginResponse ? router.push('/auth/signin') : (setEmailError("Email already exists"), setEmailStateError(true));
@@ -182,13 +182,13 @@ const Signup = () => {
         }
     };
 
- 
+
     return (
         <>
             {/* <head>
                 <title>Signup</title>
             </head> */}
-            <LoginPageHeader/>
+            <LoginPageHeader />
             <section className='bg-[#FFFFFF] lg:bg-[transparent] min-h-[calc(100vh-120px)] p-[16px] flex flex-col
              max-md:min-h-[calc(100vh-68px)] max-xl:min-h-[calc(100vh-79px)] max-[1300px]:p-[16px]'>
                 <div className='w-[90%] mx-auto max-[1400px]:w-full max-[1600px]:mb-auto mb-0'>
@@ -232,8 +232,8 @@ const Signup = () => {
                             <div className='mb-[24px] last-of-type:mb-0  relative'>
                                 <label className='text-[14px] font-medium leading-[16px] text-[#1D1D1F] block mb-[5px]'>Password</label>
                                 <div className='relative flex items-center'>
-                                    <input placeholder="Enter your Password" type={`${hidePassword?"text":"password"}`} className={`border rounded-[4px] h-[42px] p-[6px_10px] outline-none block w-full text-[14px] text-black dark:bg-[#0a0a0ac5] dark:placeholder:text-white  font-normal leading-[16px] placeholder:text-[#1516188F]  ${passwordStateError ? "border-[#EC1919]" : "border-[#00000029]"} `} id="password" value={signup_Password} onChange={handleSignup} />
-                                    <button className='absolute right-[10px] p-0' onClick={(e)=>setHidePassword(!hidePassword)}>
+                                    <input placeholder="Enter your Password" type={`${hidePassword ? "text" : "password"}`} className={`border rounded-[4px] h-[42px] p-[6px_10px] outline-none block w-full text-[14px] text-black dark:bg-[#0a0a0ac5] dark:placeholder:text-white  font-normal leading-[16px] placeholder:text-[#1516188F]  ${passwordStateError ? "border-[#EC1919]" : "border-[#00000029]"} `} id="password" value={signup_Password} onChange={handleSignup} />
+                                    <button className='absolute right-[10px] p-0' onClick={(e) => setHidePassword(!hidePassword)}>
                                         <img src="/img/hide-password.svg" alt="password" />
                                     </button>
                                 </div>
