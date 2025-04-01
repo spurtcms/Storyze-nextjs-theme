@@ -1,5 +1,6 @@
 
 import Header from "@/app/component/Header";
+import LoginPageHeader from "@/app/component/LoginPageHeader";
 import Link from "next/link";
 import React from "react";
 
@@ -19,7 +20,7 @@ const ResetPassword = () => {
                 <title>Reset Password</title>
             </head> */}
 
-            <Header/>
+            <LoginPageHeader/>
 
             <section className='bg-[#FFFFFF] lg:bg-[transparent] min-h-[calc(100vh-120px)] p-[16px] flex flex-col
              max-md:min-h-[calc(100vh-68px)] max-xl:min-h-[calc(100vh-79px)] max-[1300px]:p-[16px]'>

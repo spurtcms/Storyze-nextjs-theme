@@ -2,6 +2,7 @@
 import { fetchGraphQl } from '@/app/api/graphicql';
 import { GET_POSTS_LIST_QUERY, GET_REGISTER_QUERY } from '@/app/api/query';
 import Header from '@/app/component/Header';
+import LoginPageHeader from '@/app/component/LoginPageHeader';
 // import Header_component from '@/component/Header';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -187,7 +188,7 @@ const Signup = () => {
             {/* <head>
                 <title>Signup</title>
             </head> */}
-            <Header/>
+            <LoginPageHeader/>
             <section className='bg-[#FFFFFF] lg:bg-[transparent] min-h-[calc(100vh-120px)] p-[16px] flex flex-col
              max-md:min-h-[calc(100vh-68px)] max-xl:min-h-[calc(100vh-79px)] max-[1300px]:p-[16px]'>
                 <div className='w-[90%] mx-auto max-[1400px]:w-full max-[1600px]:mb-auto mb-0'>

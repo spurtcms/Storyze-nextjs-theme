@@ -6,7 +6,6 @@ import { imageUrl } from '../utilites/ImagePath'
 import DOMPurify from 'dompurify';
 
 const Searchpage = ({listdata}) => {
-  console.log(listdata, 'asxzas');
     const handleLoad=({src})=>{
      return src
     }

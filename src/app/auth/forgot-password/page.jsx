@@ -7,6 +7,7 @@ import { data } from 'autoprefixer';
 import { useRouter } from 'next/navigation';
 import { local_Url } from '@/app/api/url';
 import Header from '@/app/component/Header';
+import LoginPageHeader from '@/app/component/LoginPageHeader';
 
 const Forgot_Password = () => {
     const [emailId, setEmailId] = useState("");
@@ -154,7 +155,7 @@ const Forgot_Password = () => {
             {/* <head>
                 <title>Forgot Password</title>
             </head> */}
-            <Header/>
+            <LoginPageHeader/>
             <section className='bg-[#FFFFFF] lg:bg-[transparent] min-h-[calc(100vh-120px)] p-[16px] flex flex-col
              max-md:min-h-[calc(100vh-68px)] max-xl:min-h-[calc(100vh-79px)] max-[1300px]:p-[16px]'>
                 <div className='w-[90%] mx-auto max-[1400px]:w-full mb-auto'>

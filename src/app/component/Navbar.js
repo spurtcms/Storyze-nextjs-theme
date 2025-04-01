@@ -10,7 +10,7 @@ import { GET_POSTS_CHANNELLIST_QUERY } from "../api/query";
 import BannerSkeleton from "../utilites/Skeleton/BannerSkeleton";
 
 function Navbar({categories,catNo,setCatNo,setOffset,postes, scrollX ,setscrollX }){
-  console.log(setCatNo, 'zxsazx');
+  //console.log(setCatNo, 'zxsazx');
   const [postchannel, setPostchannel] = useState(postes);
   const[loader, setLoader] = useState(false);
 

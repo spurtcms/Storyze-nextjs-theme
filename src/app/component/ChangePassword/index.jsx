@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import Header from "../Header";
 import { GET_POSTS_LIST_QUERY, GET_RESET_NEW_PASSWORD } from "@/app/api/query";
 import { fetchGraphQl } from "@/app/api/graphicql";
+import LoginPageHeader from "../LoginPageHeader";
 
 
 const ChangePassword = () => {
@@ -188,7 +189,7 @@ const ChangePassword = () => {
             </head> */}
             
 
-           <Header/>
+           <LoginPageHeader/>
 
            <section className='bg-[#FFFFFF] lg:bg-[transparent] min-h-[calc(100vh-120px)] p-[16px] flex flex-col
              max-md:min-h-[calc(100vh-68px)] max-xl:min-h-[calc(100vh-79px)] max-[1300px]:p-[16px]'>
