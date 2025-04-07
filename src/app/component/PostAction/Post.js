@@ -86,12 +86,26 @@ const Post = ({ data, listdata, params }) => {
     // .concat("...") // Add ellipsis if text is truncated
   };
 
+   //{header_slug ? `/postlist/${header_slug}` : "/"}
 
-  useEffect(() => {
+   useEffect(() => {
     setCatLoader(false)
   }, [])
   const header_slug = useSelector((s) => s.customerRedux.header_slug_Redux_function)
   console.log(header_slug, "headerSlug")
+
+
+  const handleBack = () => {
+    if(header_slug){
+      router.push(`/postlist/${header_slug}`)
+    }
+    else{
+      router.push("/")
+    }
+  }
+
+
+ 
 
   return (
     <>
@@ -171,7 +185,7 @@ const Post = ({ data, listdata, params }) => {
 
               </div>
             </div>
-            <div className="w-full h-px bg-grey my-6"></div>
+            <div className="w-full h-px bg-grey "></div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 mb-12">
               {postdata &&
                 postdata.map((result, ind) => (
@@ -179,7 +193,7 @@ const Post = ({ data, listdata, params }) => {
                     {result.id !== data?.ChannelEntryDetail?.id ? (
                       <>
                         <div>
-                          <Link href={`/post/${result?.slug}`}>
+                           <Link href={`/post/${result?.slug}`}> 
                             {/* <Image 
                               loader={handleLoad}
                               src={`${result?.coverImage}`}
@@ -205,16 +219,16 @@ const Post = ({ data, listdata, params }) => {
                                 currentTarget.src = "/img/no-image.png"; // Fallback image
                               }}
                             />
-                          </Link>
+                          </Link> 
                           <p className="text-primary text-sm font-normal mb-2 my-3">
                             {result?.categories[0]?.at(0)?.categoryName}
                           </p>
                           <div>
-                            <Link href={`/post/${result?.slug}/?channelIdvalue=${response?.channelId}`}>
+                             <Link href={`/post/${result?.slug}/?channelIdvalue=${response?.channelId}`}>
                               <h3 className="text-black text-2xl line-clamp-1 overflow-hidden font-bold mb-2">
                                 {result?.title}
                               </h3>
-                            </Link>
+                             </Link> 
                             <p
                               className="text-gray-500 dark:text-white  text-lg font-light mb-3 desc"
                               dangerouslySetInnerHTML={{
@@ -266,20 +280,24 @@ const Post = ({ data, listdata, params }) => {
 
             </div>
 
-            <Link
-              href={header_slug ? `/postlist/${header_slug}` : "/"}
-              className="relative inline-flex items-center gap-1 rounded-l-md border border-gray-300 bg-white px-3 py-2 pr-4 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20 disabled:pointer-events-none disabled:opacity-40 dark:border-gray-500 dark:bg-gray-800 dark:text-gray-300"
-            >
-              <img
-                src="/img/arrow-left-colour.svg"
-                alt="Previous"
-              //  width={5}
-              //  height={5}
-              />
-              <span>Back to Previous</span>
-            </Link>
+          
           </div>
         </>}
+        <div className="max-w-full lg:max-w-4xl mb-10 m-auto ">
+    <button onClick={handleBack}
+        // href={header_slug ? `/postlist/${header_slug}` : "/"}
+        className="relative flex justify-center items-center gap-1 rounded-l-md border-2 w-[170px] border-gray-300 bg-white px-3 py-2 pr-4 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20 disabled:pointer-events-none disabled:opacity-40 dark:border-gray-500 dark:bg-gray-800 dark:text-gray-300"
+    >
+        <img
+            src="/img/arrow-left-colour.svg"
+            alt="Previous"
+            // width={5} 
+            // height={5}
+        />
+        <span>Back to Previous</span>
+    </button>
+</div>
+
     </>
   );
 };

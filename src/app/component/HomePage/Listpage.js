@@ -149,7 +149,8 @@ const Listpage = ({ listdata, }) => {
                                         {" "}
                                         <Link href={`/post/${datas?.entrydata?.slug}/${datas?.entrydata?.channelId}`}>
                                           {" "}
-                                          {datas?.entrydata?.title}{" "}
+                                          {datas?.entrydata?.title}
+                                          {" "}
                                         </Link>
                                       </h3>
                                       {/* <p
