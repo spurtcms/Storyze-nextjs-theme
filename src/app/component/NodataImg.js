@@ -10,6 +10,8 @@ export default function NodataImg() {
                     <img
                         src="/img/nodatafilter.svg"
                         alt="nodata"
+                        width={200}
+                        height={200}
                     />
                     <h1 className=" text-2xl leading-6 font-medium text-black   mt-6 text-center dark:dark:text-light-1">
                         {/* {search ? "No matching search results" : "No Listing Yet !"} */}

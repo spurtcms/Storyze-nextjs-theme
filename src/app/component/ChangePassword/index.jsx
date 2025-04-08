@@ -222,7 +222,7 @@ const ChangePassword = () => {
 
             <div className='max-w-[394px] mx-auto mb-auto'>
                 <h1 className='text-[36px] font-semibold leading-[43px] text-black text-center mb-[17px] max-sm:text-[28px]'>Set New Password</h1>
-                <p className='text-base font-medium leading-[17px] text-[#83838D]dark:text-white text-center mb-[32px] max-[1300px]:mb-[16px]'>Your new password must be different to previously passwords </p>
+                <p className='text-base font-medium leading-[17px] text-[#83838D] dark:text-white text-center mb-[32px] max-[1300px]:mb-[16px]'>Your new password must be different to previously passwords </p>
                 <div className='bg-[#FFFFFF] border border-[#E9E9E9] p-[30px] rounded-[12px] max-w-[394px] mx-auto max-[1300px]:p-[16px]'>
 
                     <div className='mb-[24px] last-of-type:mb-0 max-[1300px]:mb-[16px]'>

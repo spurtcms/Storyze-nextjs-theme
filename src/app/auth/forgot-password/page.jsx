@@ -57,6 +57,8 @@ const Forgot_Password = () => {
                   const FetchValue = await fetchGraphQl(GET_POSTS_LIST_QUERY, variable_list);
                   setSignupTenantId(FetchValue?.ChannelEntriesList?.channelEntriesList[0]?.tenantId)
                   setSignupUserId(FetchValue?.ChannelEntriesList?.channelEntriesList[0]?.createdBy)
+
+                  console.log(FetchValue?.ChannelEntriesList?.channelEntriesList[0]?.tenantId, 'ceddede')
   
               } catch (error) {
                   console.error("Error fetching data:", error);
@@ -66,6 +68,7 @@ const Forgot_Password = () => {
           fetchData();
           setLocation(window.location)
       }, []);
+      
     const handleVerifyMailId = () => {
         console.log("khfkejfekrjfkj")
         setEmailSubmit(1);
@@ -90,6 +93,7 @@ const Forgot_Password = () => {
                          }
                    else{
                setSucesMsg(forgotPass_Call?.forgotPassword?.message)
+               console.log(forgotPass_Call?.forgotPassword?.message, "rwdcfvwreecfe")
                setSuccessMsgShow(true) 
                  console.log("successsss")
               }
@@ -152,9 +156,9 @@ const Forgot_Password = () => {
 
     return (
         <>
-            {/* <head>
+            <head>
                 <title>Forgot Password</title>
-            </head> */}
+            </head>
             <LoginPageHeader/>
             <section className='bg-[#FFFFFF] lg:bg-[transparent] min-h-[calc(100vh-120px)] p-[16px] flex flex-col
              max-md:min-h-[calc(100vh-68px)] max-xl:min-h-[calc(100vh-79px)] max-[1300px]:p-[16px]'>

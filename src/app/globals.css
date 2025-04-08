@@ -74,6 +74,16 @@ body {
   background-color: #4E4D4D;
 }
 
+.dark .text-black{
+  color: white !important;
+}
+.dark .text-current{
+  color: rgb(156 163 175);
+}
+.dark .text-gray-600{
+  color: rgb(156 163 175);
+}
+
 .dark .text-black-200{
   color: #FFFFFF;
 }

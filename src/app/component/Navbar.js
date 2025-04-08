@@ -109,11 +109,12 @@ function Navbar({categories,catNo,setCatNo,setOffset,postes, scrollX ,setscrollX
               <ul
                 ref={scrl}
                 onScroll={scrollCheck}
-                className="flex flex-nowrap flex-row gap-x-2 justify-start items-center overflow-hidden scrollbar-style"
+                className="flex flex-nowrap text-black dark:text-white flex-row gap-x-2 justify-start items-center overflow-hidden scrollbar-style"
               >
                 <li
                   onClick={() => handleActive(null)}
-                  className={`whitespace-nowrap dark:text-white px-6 py-2 rounded-3xl border font-base  leading-4 hover:text-white hover:bg-gray-500 hover:border-gray-500 cursor-pointer ${
+                  className={`whitespace-nowrap text-black dark:text-white  px-6 py-2 rounded-3xl border font-base  leading-4 hover:text-white hover:bg-gray-500 hover:border-gray-500 cursor-pointer 
+                    ${
                     catNo == null
                       ? "border-cyan-500 text-primary"
                       : "border-gray-200 text-gray-600"
@@ -128,7 +129,7 @@ function Navbar({categories,catNo,setCatNo,setOffset,postes, scrollX ,setscrollX
                    <li
                     // key={index}
                     // onClick={() => handleActive(data)}
-                    className={`whitespace-nowrap px-6 py-2 dark:text-white rounded-3xl border font-base  leading-4 hover:text-white hover:bg-gray-500 hover:border-gray-500 cursor-pointer ${
+                    className={`whitespace-nowrap px-6 py-2 text-black dark:text-white rounded-3xl border font-base  leading-4 hover:text-white hover:bg-gray-500 hover:border-gray-500 cursor-pointer ${
                       catNo == data.slugName
                         ? "border-cyan-500 text-primary"
                         : "border-gray-200 text-gray-600"
